@@ -1,0 +1,34 @@
+@model NationalPlatform.Controllers.PlanController
+@{
+    var planImage = ViewData["PlanImage"];
+    Console.WriteLine(planImage);
+}
+<header>
+    Regist Plane
+</header>
+
+<form asp-controller="Plan" asp-action="UploadImage" method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <!---파일선택 컨트롤--->
+    <input type="submit" value="Upload">
+</form>
+
+
+<div>
+    <img src="@planImage" alt="Sample Image" width="300px">
+</div>
+
+
+
+@* <form enctype="multipart/form-data" method="post">
+    <dl>
+        <dt>
+            <label asp-for="FileUpload.FormFile"></label>
+        </dt>
+        <dd>
+            <input asp-for="FileUpload.FormFile" type="file">
+            <span asp-validation-for="FileUpload.FormFile"></span>
+        </dd>
+    </dl>
+    <input asp-page-handler="Upload" class="btn" type="submit" value="Upload" />
+</form> *@

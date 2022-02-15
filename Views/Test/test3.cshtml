@@ -1,0 +1,42 @@
+@* 클릭시 get으로 숫자 증가 *@
+@* 클릭시 post로 숫자 증가 *@
+
+@model NationalPlatform.Models.Test
+
+@{
+    var testModel = ViewData["TestModel"] as Test;
+    ViewData["TestViewData"] = "Test View Data";
+    ViewData["Message"] = "Test View Data Message";
+}
+
+@* Get 테스트 *@
+<form asp-controller="Test" asp-action="TestGet" method="get">
+    <input type="hidden" value="1" name="GetValue">
+    <input type='submit' value='Get Button'/>
+</form>
+
+@* Post 테스트 *@
+<form asp-controller="Test" asp-action="TestPost" method="post">
+    <input type="hidden" value="2" name="PostValue">
+    <input type='submit' value='Post Button'/>
+</form>
+
+@* Content 테스트 *@
+<form asp-controller="Test" asp-action="TestContent">
+    <input type='submit' value="Content Button">
+</form>
+
+@* Redirect 테스트 *@
+<form asp-controller="Test" asp-action="TestRedirect">
+    <input type="submit" value="Redirect Button">
+</form>
+
+<div>@Model.getValue</div>
+<div>@Model.postValue</div>
+<div>@testModel.getValue</div>
+<div>@testModel.postValue</div>
+
+<a href="/test2">Test2로 이동</a>
+
+<div>@ViewData["TestViewData"]</div>
+<div>@ViewData["Message"]</div>

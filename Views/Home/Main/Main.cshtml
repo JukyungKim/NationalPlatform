@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Main Page";
+}
+
+<link rel="stylesheet" href="~/css/main/main.css">
+
+<!DOCTYPE html>
+
+<header>
+    <p>Main Page</p>
+</header>
+<body>
+    <form method="post">
+    <button class="button" asp-controller="Main" asp-action="RegistSensor">센서 등록</button>
+    </form>
+    <form method="post">
+    <button class="button" asp-controller="Main" asp-action="RegistPlane">도면 등록</button>
+    </form>
+    <form method="post">
+    <button class="button" asp-controller="Main" asp-action="RegistAccount">계정 등록</button>
+    </form>
+</body>
+
+
+
+

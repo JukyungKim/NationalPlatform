@@ -1,0 +1,49 @@
+@model Test
+@{ var total = 7;}
+@{ Test test = new Test();
+    test.razortest();
+}
+
+
+<details>
+   <details>
+   <p>details코드만 적용</p>
+</details>
+</details>
+
+@* Link Javascript *@
+<head>
+    <script src="~/js/test/test.js"></script>
+</head>
+<body>
+    @* Test javascript *@
+    <input type="button" onclick="alert('Hello world')" value="Hello"/>
+    <input type="button" id="hw" value="Hello2"/>
+    <script type="text/javascript">
+        var h = document.getElementById('hw');
+        h.addEventListener('click', function(){
+            alert('Hello world2');
+        })
+    </script>
+    
+    <input type="button" id="hw2" value="Hello3" />
+
+    @* Test css *@
+    <p style="color: green">inline css style</p>
+    <h1>internal css style</h1>
+    <h2>linking css style</h2>
+
+    <p>use razor. c# value total : @total</p>
+    @for(int i = 0; i < 5; i++){
+        <p>a</p>
+    }
+</body>
+
+<style>
+    h1{
+        color: blue;
+    }
+</style>
+
+@* Link CSS *@
+<link rel="stylesheet" href="~/css/test/test.css">

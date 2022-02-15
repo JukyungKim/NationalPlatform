@@ -1,0 +1,109 @@
+@model NationalPlatform.Models.RegistAccountModel
+@using Npgsql
+@{
+  var currentCount = 0;
+
+  void IncrementCount()
+  {
+    currentCount++;
+  }
+}
+
+<header>
+    Regist Account
+</header>
+
+<head>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.js"></script>
+  <link rel="stylesheet" href="~/css/main/sensor/regist_sensor.css">
+  <script src="~/js/main/sensor/regist_sensor.js"></script>  
+</head>
+
+<body>
+  <div id="table_title_region">
+    <p1>ID</p1>
+    <p1>이름</p1>
+    <p1>전화번호</p1>
+  </div>
+  <div id="table_item_region">
+  </div>
+
+  @* Chart *@
+  <div class="chart">
+    @using (var conn = new NpgsqlConnection(
+                    "host=localhost;username=postgres;password=1234;database=nationaldb"))
+        {
+            try
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = String.Format("SELECT * FROM account ORDER BY id DESC");
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        Console.WriteLine(cmd.CommandText);
+                        while (reader.Read())
+                        {
+                            Console.Write(reader.GetString(0) + " ");
+                            Console.Write(reader.GetString(1) + " ");
+                            Console.Write(reader.GetString(2) + " ");
+                            Console.Write(reader.GetString(3) + " ");
+                            Console.Write(reader.GetString(4) + " ");
+                            Console.Write(reader.GetString(5) + " ");
+                            Console.Write("\n");
+                            <div class="sensor_info">
+
+                              <p2>@reader.GetString(0)</p2>
+                              <p2>@reader.GetString(1)</p2>
+                              <p2>@reader.GetString(2)</p2>
+                              <p2>@reader.GetString(3)</p2>
+                              <p2>@reader.GetString(4)</p2>
+                              <p2>@reader.GetString(5)</p2>
+
+                            </div>
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+  </div>
+    @* Modal Popup 1 *@
+  <button class="btn_add_sensor">계정 추가</button>
+  <div class="background">
+    <div class="window">
+      <div class="popup">
+        <form asp-controller="Account" asp-action="RegistAccount" method="post" id="regist_sensor_form">
+          <p id="sensor_info_br"></p><br>
+          <p style="display:inline" class="sensor_info">ID</p>  <input type="text" class="sensor_info_input" name="id"><br>
+          <p style="display:inline" class="sensor_info">Password</p>  <input type="text" class="sensor_info_input" name="password"><br>
+          <p style="display:inline" class="sensor_info">이름</p>  <input type="text" class="sensor_info_input" name="name"><br>
+          <p style="display:inline" class="sensor_info">권한</p>  <input type="text" class="sensor_info_input" name="authority"><br>
+          <p style="display:inline" class="sensor_info">전화 번호</p>  <input type="text" class="sensor_info_input" name="phone_number"><br>
+          <p style="display:inline" class="sensor_info">담당구역</p>  <input type="text" class="sensor_info_input" name="district"><br>
+       </form>
+        <button type="submit" form="regist_sensor_form" class="close">추가하기</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+<style>
+  #table_title_region {
+    background: yellow;
+    overflow: hidden;
+  }
+
+  p1 {
+    float: left;
+    padding: 30px;
+  }
+  p2{
+    width: 6%;
+    padding: 50px;
+  }
+</style>
