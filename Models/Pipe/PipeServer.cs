@@ -6,7 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace NationalPlatform.Models;
-public class PipeServer{
+public class PipeServer
+{
     private static int numThreads = 2;
     public static async void Start()
     {
@@ -45,50 +46,60 @@ public class PipeServer{
             Console.WriteLine("\nServer threads exhausted, exiting.");
         };
         Task task = new Task(act, "pipe");
-        
+
         task.Start();
 
         return task;
     }
     public static void ServerThread(object data)
-     {
-        NamedPipeServerStream pipeServer =
+    {
+        while (true)
+        {
+            NamedPipeServerStream pipeServer =
             new NamedPipeServerStream("testpipe", PipeDirection.InOut, numThreads);
 
-        int threadId = Thread.CurrentThread.ManagedThreadId;
+            int threadId = Thread.CurrentThread.ManagedThreadId;
 
-        // Wait for a client to connect
-        pipeServer.WaitForConnection();
 
-        Console.WriteLine("Client connected on thread[{0}].", threadId);
-        try
-        {
-            // Read the request from the client. Once the client has
-            // written to the pipe its security token will be available.
+            // Wait for a client to connect
+            pipeServer.WaitForConnection();
 
-            StreamString ss = new StreamString(pipeServer);
+            Console.WriteLine("Client connected on thread[{0}].", threadId);
+            try
+            {
+                // Read the request from the client. Once the client has
+                // written to the pipe its security token will be available.
 
-            // Verify our identity to the connected client using a
-            // string that the client anticipates.
+                StreamString ss = new StreamString(pipeServer);
 
-            ss.WriteString("I am the one true server!");
-            string filename = ss.ReadString();
+                // Verify our identity to the connected client using a
+                // string that the client anticipates.
 
-            // Read in the contents of the file while impersonating the client.
-            ReadFileToStream fileReader = new ReadFileToStream(ss, filename);
+                ss.WriteString("I am the one true server!");
+                // string filename = ss.ReadString();
+                // ss.ReadByte();
+                PipeProtocol.receivedData(ss.ReadByte());
+                
+                ss.WriteByte(PipeProtocol.sendData(PipeProtocol.command));
+                /*
+                            // Read in the contents of the file while impersonating the client.
+                            ReadFileToStream fileReader = new ReadFileToStream(ss, filename);
 
-            // Display the name of the user we are impersonating.
-            Console.WriteLine("Reading file: {0} on thread[{1}] as user: {2}.",
-                filename, threadId, pipeServer.GetImpersonationUserName());
-            pipeServer.RunAsClient(fileReader.Start);
+                            // Display the name of the user we are impersonating.
+                            Console.WriteLine("Reading file: {0} on thread[{1}] as user: {2}.",
+                                filename, threadId, pipeServer.GetImpersonationUserName());
+                            pipeServer.RunAsClient(fileReader.Start);
+                */
+            }
+            // Catch the IOException that is raised if the pipe is broken
+            // or disconnected.
+            catch (IOException e)
+            {
+                Console.WriteLine("ERROR: {0}", e.Message);
+            }
+            Console.WriteLine("Close pipe");
+            pipeServer.Close();
         }
-        // Catch the IOException that is raised if the pipe is broken
-        // or disconnected.
-        catch (IOException e)
-        {
-            Console.WriteLine("ERROR: {0}", e.Message);
-        }
-        pipeServer.Close();
     }
 }
 
@@ -113,7 +124,33 @@ public class StreamString
         byte[] inBuffer = new byte[len];
         ioStream.Read(inBuffer, 0, len);
 
+        Console.Write("Received : ");
+        foreach (var d in inBuffer)
+        {
+            // Console.Write("{0} ", d);
+        }
+        Console.WriteLine("");
+
         return streamEncoding.GetString(inBuffer);
+    }
+
+    public byte[] ReadByte()
+    {
+        int len = 0;
+
+        len = ioStream.ReadByte() * 256;
+        len += ioStream.ReadByte();
+        byte[] inBuffer = new byte[len];
+        ioStream.Read(inBuffer, 0, len);
+
+        Console.Write("Received : ");
+        foreach (var d in inBuffer)
+        {
+            Console.Write("{0} ", d);
+        }
+        Console.WriteLine("");
+
+        return inBuffer;
     }
 
     public int WriteString(string outString)
@@ -130,6 +167,16 @@ public class StreamString
         ioStream.Flush();
 
         return outBuffer.Length + 2;
+    }
+
+    public void WriteByte(byte[] data)
+    {
+        byte[] buf = data;
+        int len = buf.Length;
+        ioStream.WriteByte((byte)(len / 256));
+        ioStream.WriteByte((byte)(len & 255));
+        ioStream.Write(buf, 0, len);
+        ioStream.Flush();
     }
 }
 

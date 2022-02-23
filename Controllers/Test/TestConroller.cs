@@ -89,4 +89,11 @@ public class TestController : Controller
     {
         Console.WriteLine("Test Get Javascript: {0}, {1}", firstName, lastName);
     }
+
+        [Route("test7/")]
+    public IActionResult Test7()
+    {
+ 
+        return View("/views/test/test7.cshtml");
+    }
 }

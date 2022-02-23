@@ -16477,6 +16477,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Kim\\Project\\.NET\\NationalPlatform\\Views\\Test\\test7.cshtml",
+      "TargetPath": "Views\\Test\\test7.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Kim\\Project\\.NET\\NationalPlatform\\Views\\Test\\test6.cshtml",
       "TargetPath": "Views\\Test\\test6.cshtml",
       "FileKind": "mvc"

@@ -1,0 +1,35 @@
+@* 자바스크립트 이용해서 서버로 데이터 전송 *@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLHttpRequest</title>
+</head>
+
+<body> <button id="btn_get">GET 요청</button> <button id="btn_put">POST 요청</button> </body>
+<script> // 1. GET 요청 처리 : name, age 데이터 전송 
+    document.getElementById("btn_get").addEventListener('click', function (event) {
+        // 1) XMLHttpRequest 객체 생성 
+        const request = new XMLHttpRequest();
+        // 2) onreadystatechange 이벤트리스너 등록 
+        request.onreadystatechange = function (evnet) { if (request.readyState == 4 && request.status == 200) { console.log(request.responseText); } }
+        // 3) open() 초기화 
+        request.open('GET', '/board?name=카레유&age=30', true);
+        // 요청경로 뒤에 ?key=value&key&value 형태로 데이터를 전송한다. 
+        // 4) send() 전송 
+        request.send();
+    });
+    // 2. POST 요청 처리 : name, age 데이터 전송 
+    document.getElementById("btn_get").onclick = function (evnet) {
+        const request = new XMLHttpRequest(); request.onreadystatechange = function (evnet) { if (request.readyState == 4 && request.status == 200) { console.log(request.responseText); } }
+        // POST 설정 
+        request.open('POST', '/board', true);
+        // !!! POST 전송시, 데이터 전달을 위한 설정 
+        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded'); request.send(`name=카레유&age=30`);
+    } </script>
+
+</html>

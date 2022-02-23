@@ -68,5 +68,16 @@ public class RegistPlanModel
         }
         return "";
     }
+
+    public static List<byte> LoadPlanInfoList()
+    {
+        List<byte> infoList = new List<byte>();
+
+        infoList.Add(10);
+        infoList.Add(20);
+        infoList.Add(30);
+
+        return infoList;
+    }
 }
 
