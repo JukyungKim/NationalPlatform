@@ -84,6 +84,7 @@ public class RegistSensorModel
                         Console.WriteLine(cmd.CommandText);
                         while (reader.Read())
                         {
+
                             Console.Write(reader.GetString(0) + " ");
                             Console.Write(reader.GetString(1) + " ");
                             Console.Write(reader.GetString(2) + " ");

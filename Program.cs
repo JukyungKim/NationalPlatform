@@ -32,6 +32,7 @@ builder.WebHost.ConfigureServices(services =>
 });
 
 PipeServer.Start();
+ReceiveSensorData.Start();
 
 var app = builder.Build();
 

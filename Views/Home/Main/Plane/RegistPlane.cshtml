@@ -8,8 +8,15 @@
 </header>
 
 <form asp-controller="Plan" asp-action="UploadImage" method="post" enctype="multipart/form-data">
-    <input type="file" name="file">
+    <input type="file" name="file"><br>
     <!---파일선택 컨트롤--->
+    <p style="display:inline" class="plan_info">도면 이름</p> <input type="text" class="plan_info_input" name="plan_image_name"><br>
+    <p style="display:inline" class="plan_info">주소</p> <input type="text" class="plan_info_input" name="address"><br>
+    <p style="display:inline" class="plan_info">건물 이름</p> <input type="text" class="plan_info_input" name="building_name"><br>
+    <p style="display:inline" class="plan_info">동</p> <input type="text" class="plan_info_input" name="dong"><br>
+    <p style="display:inline" class="plan_info">층</p> <input type="text" class="plan_info_input" name="floor"><br>
+    <p style="display:inline" class="plan_info">호</p> <input type="text" class="plan_info_input" name="ho"><br>
+
     <input type="submit" value="Upload">
 </form>
 

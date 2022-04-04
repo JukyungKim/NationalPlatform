@@ -1,4 +1,5 @@
 
+using System.Text;
 using NationalPlatform.Models;
 
 public class PipeProtocol{
@@ -7,6 +8,7 @@ public class PipeProtocol{
         SENSOR_INFO = 1, SENSOR_DATA, PLAN_IMAGE, PLAN_INFO
     };
     static public int command;
+    static public string planId;
     static public void receivedData(byte[] data)
     {
         command = data[0];
@@ -63,7 +65,18 @@ public class PipeProtocol{
 
     static public void receivePlanImage(byte[] data)
     {
+        Console.WriteLine("Received plan image");
 
+        byte[] temp = new byte[data.Length - 1];
+        string buf;
+
+        for(int i = 1; i < data.Length; i++){
+            temp[i - 1] = data[i];
+        }
+        buf = Encoding.Default.GetString(temp);
+        
+        planId = buf;
+        Console.WriteLine("Plan image id : " + buf);
     }
     static public void receivePlanInfo(byte[] data)
     {
@@ -93,15 +106,17 @@ public class PipeProtocol{
 
         return buf.ToArray();
     }
-
     static public byte[] sendPlanImage()
     {
         Console.WriteLine("Send plan image");
-        
+
         List<byte> buf = new List<byte>();
 
-        buf.Add(5);
-        buf.Add(6);
+        buf.Add(3);
+        byte[] temp = RegistPlanModel.LoadPlanImage(planId);
+        foreach(var v in temp){
+            buf.Add(v);
+        }
 
         return buf.ToArray();
     }
