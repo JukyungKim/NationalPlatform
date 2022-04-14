@@ -9,6 +9,7 @@ public class PipeProtocol{
     };
     static public int command;
     static public string planId;
+    static public List<string> sensorIdList;
     static public void receivedData(byte[] data)
     {
         command = data[0];
@@ -60,7 +61,22 @@ public class PipeProtocol{
 
     static public void receiveSensorData(byte[] data)
     {
+        // string planId;
+        byte[] temp = new byte[data.Length - 1];
+        List<string> sensorIdList = new List<string>();
 
+        for(int i = 1; i < data.Length; i++){
+            temp[i - 1] = data[i];
+        }
+        planId = Encoding.Default.GetString(temp);
+        Console.WriteLine("Plan image id : " + planId);
+        RegistSensorModel.SearchSensor(planId, sensorIdList);
+
+        foreach(var s in sensorIdList){
+            Console.WriteLine("Sensor id list : " + s);
+        }
+
+        PipeProtocol.sensorIdList = sensorIdList;
     }
 
     static public void receivePlanImage(byte[] data)
@@ -90,7 +106,8 @@ public class PipeProtocol{
         List<byte> buf = new List<byte>();
 
         buf.Add(1);
-        buf.Add(2);
+
+
 
         return buf.ToArray();
     }
@@ -101,10 +118,48 @@ public class PipeProtocol{
         
         List<byte> buf = new List<byte>();
 
-        buf.Add(3);
-        buf.Add(4);
+        buf.Add(2);
 
+        List<SensorData> sensorListInPlan = new List<SensorData>();
+
+        // 도면에 해당하는 센서들 검색
+        foreach(var idDb in sensorIdList){
+            foreach(var sensorTcp in ReceiveSensorData.sensorList){
+                if(idDb == sensorTcp.id.ToString()){
+                    sensorListInPlan.Add(sensorTcp);
+                    Console.WriteLine("Tcp sensor : " + idDb);
+                }
+            }
+        }
+        
+        // 센서 데이터를 바이트 배열로 변환
+        List<byte[]> temp = new List<byte[]>();
+        
+        // 6 byte : id, 4 byte : smoke
+        foreach(var s in sensorListInPlan){
+            temp.Add(ConvertToByte(s.id).Take(6).ToArray());
+            temp.Add(ConvertToByte(s.smoke));
+            temp.Add(ConvertToByte(s.temp));
+            temp.Add(ConvertToByte(s.gas));
+        }
+
+        foreach(var t in temp){
+            foreach(var b in t){
+                buf.Add(b);
+            }
+        }
+        Console.WriteLine("Send sensor data buf : " + buf.Count);
+        
         return buf.ToArray();
+    }
+
+    static public byte[] ConvertToByte(int t)
+    {
+        return BitConverter.GetBytes(t);
+    }
+    static public byte[] ConvertToByte(ulong t)
+    {
+        return BitConverter.GetBytes(t);
     }
     static public byte[] sendPlanImage()
     {
