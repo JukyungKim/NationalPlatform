@@ -3,13 +3,13 @@ using System.Net;
 using System.Net.Sockets;
 using static System.Console;
 using System.Text;
+using System.Net.NetworkInformation;
 
 namespace NationalPlatform.Models;
 
 class ReceiveSensorData
 {
     public static List<SensorData> sensorList = new List<SensorData>();
-
     private static TcpListener server;
 
     public static async void Start()
@@ -21,7 +21,7 @@ class ReceiveSensorData
     public static Task ServerTask()
     {
         int numThreads = 1;
-        Action<object> act = obj =>
+        Action<object> act = async obj =>
         {
             // IPEndPoint serverAddress = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1212);
             IPEndPoint serverAddress = new IPEndPoint(IPAddress.Any, 1212);
@@ -32,13 +32,70 @@ class ReceiveSensorData
             while (true)
             {
                 Socket clientSocket = server.AcceptSocket();
-
                 WriteLine("클라이언트 접속");
 
-                ClientHadler hanlder = new ClientHadler(clientSocket);
+                ClientHandler hanlder = new ClientHandler(clientSocket);
                 Thread t = new Thread(new ThreadStart(hanlder.chat));
 
                 t.Start();
+
+                /*
+                // Socket clientSocket = server.AcceptSocket();
+                // IPAddress ip = ((IPEndPoint)clientSocket.RemoteEndPoint).Address;
+                // int index = 0;
+                // foreach(var c in clientHanderList){
+                //     IPAddress preIp = ((IPEndPoint)c.socket.RemoteEndPoint).Address;
+                //     if(ip.Equals(preIp)){
+                //         c.stream.Close();
+                //         c.socket.Close();
+                //         c.reader.Close();
+                //         c.removeSensor();
+        
+                //         clientHanderList.Remove(c);
+                //         // clientThread[index] = null;
+                //         // clientThread.Remove(clientThread[index]);
+                //         threads[0].Interrupt();
+                //         Console.WriteLine("Remove client");
+                //         if(clientHanderList.Count == 0) break;
+                //     }
+                //     index++;
+                // }
+
+                // Console.WriteLine("클라이언트 접속:" + IPAddress.Parse(ip.ToString()));
+
+                // ClientHandler handler = new ClientHandler(clientSocket);
+                // clientHanderList.Add(handler);
+
+                // Thread t = new Thread(new ThreadStart(handler.chat));
+                // clientThread.Add(t);
+                // t.Start();
+                */
+
+
+
+                /*
+                // bool existIp = false;
+                // Socket socket = server.AcceptSocket();
+                // IPAddress ip = IPAddress.Parse(((IPEndPoint)socket.RemoteEndPoint).Address.ToString());
+                // foreach(var c in clientSocket){
+                //     IPAddress preIp = IPAddress.Parse(((IPEndPoint)c.RemoteEndPoint).Address.ToString());
+                //     if(ip.Equals(preIp)){
+                //         Console.WriteLine("Exist socket");
+                //         existIp = true;
+                //     }
+                // }
+                // if(!existIp){
+                //     clientSocket.Add(socket);
+
+                //     WriteLine("클라이언트 접속:" + IPAddress.Parse(((IPEndPoint)clientSocket.Last().RemoteEndPoint).Address.ToString()));
+
+                //     ClientHandler hanlder = new ClientHandler(clientSocket.Last());
+                //     Thread t = new Thread(new ThreadStart(hanlder.chat));
+
+                //     t.Start();
+                // }
+                */
+
             }
         };
         Task task = new Task(act, "tcp");
@@ -118,21 +175,24 @@ class ReceiveSensorData
     }
 }
 
-class ClientHadler
+class ClientHandler
 {
     private ulong id = 0;
-    Socket socket = null;
-    NetworkStream stream = null;
-    StreamReader reader = null;
-    StreamWriter writer = null;
-
-    public ClientHadler(Socket socket)
+    public Socket socket = null;
+    public NetworkStream stream = null;
+    public StreamReader reader = null;
+    public StreamWriter writer = null;
+    public IPAddress ip;
+    public IPAddress port;
+    private SensorData sensorData;
+    public ClientHandler(Socket socket)
     {
         this.socket = socket;
     }
     public void chat()
     {
-        //클라이언트의 데이터를 읽고, 쓰기 위한 스트림을 만든다. 
+        //클라이언트의 데이터를 읽고, 쓰기 위한 스트림을 만든다.
+        Console.WriteLine("Chat start"); 
         stream = new NetworkStream(socket);
         Encoding encode = Encoding.GetEncoding("utf-8");
         reader = new StreamReader(stream, encode);
@@ -142,27 +202,37 @@ class ClientHadler
         string data = string.Empty;
         byte[] bytes = new byte[256];
 
-        while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
+        try
         {
-            WriteLine("Byte length : " + length);
-            data = Encoding.Default.GetString(bytes, 0, length);
-            WriteLine("Received bytes : ");
-            foreach(var v in bytes){
-                Console.Write(" " + v);
+            while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
+            {
+                WriteLine("TCP Byte length : " + length);
+                data = Encoding.Default.GetString(bytes, 0, length);
+                WriteLine("TCP Received bytes : ");
+                foreach (var v in bytes)
+                {
+                    Console.Write(" " + v);
+                }
+                WriteLine("\nReceived string : " + data);
+
+                getSensorData(bytes);
+                // byte[] message = Encoding.Default.GetBytes(data);
+                // stream.Write(message, 0, message.Length);
             }
-            WriteLine("\nReceived string : " + data);
-
-            getSensorData(bytes);
-            // byte[] message = Encoding.Default.GetBytes(data);
-            // stream.Write(message, 0, message.Length);
         }
-
-        stream.Close();
-        socket.Close();
-        reader.Close();
-        // writer.Close();
-        removeSensor();
-        WriteLine("Socket closed");
+        catch
+        {
+            Console.WriteLine("Stream read error", ConsoleColor.Red);
+        }
+        finally
+        {
+            stream.Close();
+            socket.Close();
+            reader.Close();
+            // writer.Close();
+            removeSensor();
+            WriteLine("Socket closed");
+        }
     }
 
     public void getSensorData(byte[] buf)
@@ -171,7 +241,10 @@ class ClientHadler
         {
             id = (ulong)((buf[4] << 40) | (buf[5] << 32) | (buf[6] << 24)
                     | (buf[7] << 16) | (buf[8] << 8) | buf[9]);
-            ReceiveSensorData.sensorList.Add(new SensorData(id));
+            sensorData = new SensorData(id);
+            sensorData.ip = IPAddress.Parse(((IPEndPoint)socket.RemoteEndPoint).Address.ToString());
+            sensorData.port = IPAddress.Parse(((IPEndPoint)socket.RemoteEndPoint).Port.ToString());
+            ReceiveSensorData.sensorList.Add(sensorData);
         }
         
         foreach (var s in ReceiveSensorData.sensorList)
@@ -195,12 +268,19 @@ class ClientHadler
     }
     public void removeSensor()
     {
-        foreach(var s in ReceiveSensorData.sensorList){
-            if(s.id == id){
-                ReceiveSensorData.sensorList.Remove(s);
-                id = 0;
-            }
-        }
+        // if (ReceiveSensorData.sensorList.Count != 0)
+        // {
+        //     foreach (var s in ReceiveSensorData.sensorList)
+        //     {
+        //         if (s.id == id && s.ip.Equals(ip) && s.port.Equals(port))
+        //         {
+        //             ReceiveSensorData.sensorList.Remove(s);
+        //             if(ReceiveSensorData.sensorList.Count == 0) break;
+        //             id = 0;
+        //         }
+        //     }
+        // }
+        ReceiveSensorData.sensorList.Remove(sensorData);
         Console.WriteLine("Removed sensor");
     }
 }
@@ -210,6 +290,8 @@ class SensorData{
     public int smoke;
     public int temp;
     public int gas;
+    public IPAddress ip;
+    public IPAddress port;
     public SensorData(ulong id)
     {
         this.id = id;

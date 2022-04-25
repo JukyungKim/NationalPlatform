@@ -7,20 +7,24 @@
 <!DOCTYPE html>
 
 <header>
-    <p>Main Page</p>
+
 </header>
 <body>
-    <form method="post">
-    <button class="button" asp-controller="Main" asp-action="RegistSensor">센서 등록</button>
-    </form>
-    <form method="post">
-    <button class="button" asp-controller="Main" asp-action="RegistPlane">도면 등록</button>
-    </form>
-    <form method="post">
-    <button class="button" asp-controller="Main" asp-action="RegistAccount">계정 등록</button>
-    </form>
+    <div class="title">
+        재난 안전 관리 플랫폼
+    </div>
+    <div class="container">
+        <form method="post">
+            <button class="button" id="btn-1" asp-controller="Main" asp-action="RegistSensor">센서 등록</button>
+        </form>
+        <form method="post">
+            <button class="button" id="btn-2" asp-controller="Main" asp-action="RegistPlane">도면 등록</button>
+        </form>
+        @* <form method="post">
+            <button class="button" asp-controller="Main" asp-action="RegistAccount">계정 등록</button>
+            </form> *@
+    </div>
 </body>
-
 
 
 

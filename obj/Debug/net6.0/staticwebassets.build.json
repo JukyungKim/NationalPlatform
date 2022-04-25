@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4uDr8H/Gw6g5132SR7U60kF/ejPD4XjcTZhVX/DZuds=",
+  "Hash": "yUmrHEjtghys59Dosu1R5RArjckWYKS2yfK1xw1OQYw=",
   "Source": "NationalPlatform",
   "BasePath": "_content/NationalPlatform",
   "Mode": "Default",
@@ -1307,6 +1307,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\main\\main.css"
+    },
+    {
+      "Identity": "D:\\Kim\\Project\\.NET\\NationalPlatform\\wwwroot\\css\\main\\plan\\regist_plan.css",
+      "SourceId": "NationalPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Kim\\Project\\.NET\\NationalPlatform\\wwwroot\\",
+      "BasePath": "_content/NationalPlatform",
+      "RelativePath": "css/main/plan/regist_plan.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\main\\plan\\regist_plan.css"
     },
     {
       "Identity": "D:\\Kim\\Project\\.NET\\NationalPlatform\\wwwroot\\css\\main\\sensor\\regist_sensor.css",

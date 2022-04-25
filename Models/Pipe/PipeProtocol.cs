@@ -123,10 +123,10 @@ public class PipeProtocol{
         List<SensorData> sensorListInPlan = new List<SensorData>();
 
         // 도면에 해당하는 센서들 검색
-        foreach(var idDb in sensorIdList){
-            foreach(var sensorTcp in ReceiveSensorData.sensorList){
+        foreach(var idDb in sensorIdList){  // sensorIdList : 도면안에 있는 센서리스트(DB 검색)
+            foreach(var sensorTcp in ReceiveSensorData.sensorList){ // sensorList : 수신 센서
                 if(idDb == sensorTcp.id.ToString()){
-                    sensorListInPlan.Add(sensorTcp);
+                    sensorListInPlan.Add(sensorTcp);        // sensorListInPlan : 도면 안에 있고 수신 센서
                     Console.WriteLine("Tcp sensor : " + idDb);
                 }
             }
@@ -135,7 +135,7 @@ public class PipeProtocol{
         // 센서 데이터를 바이트 배열로 변환
         List<byte[]> temp = new List<byte[]>();
         
-        // 6 byte : id, 4 byte : smoke
+        // 6byte:id, 4byte:smoke,temp,gas
         foreach(var s in sensorListInPlan){
             temp.Add(ConvertToByte(s.id).Take(6).ToArray());
             temp.Add(ConvertToByte(s.smoke));
@@ -149,7 +149,7 @@ public class PipeProtocol{
             }
         }
         Console.WriteLine("Send sensor data buf : " + buf.Count);
-        
+
         return buf.ToArray();
     }
 

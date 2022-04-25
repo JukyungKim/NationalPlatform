@@ -3,28 +3,57 @@
     var planImage = ViewData["PlanImage"];
     Console.WriteLine(planImage);
 }
-<header>
-    Regist Plane
-</header>
+<head>
+  @* <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.js"></script> *@
+  <link rel="stylesheet" href="~/css/main/plan/regist_plan.css">
+  @* <script src="~/js/main/sensor/regist_sensor.js"></script>   *@
+</head>
 
-<form asp-controller="Plan" asp-action="UploadImage" method="post" enctype="multipart/form-data">
-    <input type="file" name="file"><br>
-    <!---파일선택 컨트롤--->
-    <p style="display:inline" class="plan_info">도면 이름</p> <input type="text" class="plan_info_input" name="plan_image_name"><br>
-    <p style="display:inline" class="plan_info">주소</p> <input type="text" class="plan_info_input" name="address"><br>
-    <p style="display:inline" class="plan_info">건물 이름</p> <input type="text" class="plan_info_input" name="building_name"><br>
-    <p style="display:inline" class="plan_info">동</p> <input type="text" class="plan_info_input" name="dong"><br>
-    <p style="display:inline" class="plan_info">층</p> <input type="text" class="plan_info_input" name="floor"><br>
-    <p style="display:inline" class="plan_info">호</p> <input type="text" class="plan_info_input" name="ho"><br>
+<body>
+    <div class="title">
+        도면 등록
+    </div>
+    <div class="regist">
+        <form asp-controller="Plan" asp-action="UploadImage" method="post" enctype="multipart/form-data">
+            <input class="button" type="file" name="file"><br>
+            <!---파일선택 컨트롤--->
+            <ul>
+                <li class="plan_info">도면 이름</li>
+                <li><input type="text" class="plan_info_input" name="plan_image_name" style="text-align:right;"></li>
+            </ul>
 
-    <input type="submit" value="Upload">
-</form>
+            <ul>
+                <li class="plan_info">주소</li>
+                <li><input type="text" class="plan_info_input" name="address" style="text-align:right;"></li>
+            </ul>
 
+            <ul>
+                <li class="plan_info">건물 이름</li>
+                <li><input type="text" class="plan_info_input" name="building_name" style="text-align:right;"></li>
+            </ul>
 
-<div>
-    <img src="@planImage" alt="Sample Image" width="300px">
-</div>
+            <ul>
+                <li class="plan_info">동</li>
+                <li><input type="text" class="plan_info_input" name="dong" style="text-align:right;"></li>
+            </ul>
 
+            <ul>
+                <li class="plan_info">층</li>
+                <li><input type="text" class="plan_info_input" name="floor" style="text-align:right;"></li>
+            </ul>
+
+            <ul>
+                <li class="plan_info">호</li>
+                <li><input type="text" class="plan_info_input" name="ho" style="text-align:right;"></li>
+            </ul>
+            <input class="button" type="submit" value="Upload">
+        </form>
+        
+    </div>
+     <div class="image">
+            <img src="@planImage" width="500px" style="width:500; height:300px; border: 3px solid black;">
+        </div>
+</body>
 
 
 @* <form enctype="multipart/form-data" method="post">
