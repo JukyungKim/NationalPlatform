@@ -4,6 +4,15 @@ html, body{
     padding: 0px;
     margin: 0px;
 }
+body {
+  background: #2ecc71;
+  font-size: 100.5%;
+}
+.title{
+  text-align: center;
+  font-size: 120px;
+  color:beige
+}
 
 .sensor_info{
     color: black;
@@ -14,6 +23,48 @@ html, body{
     width: 60%;
     left: 30%;
 }
+
+  table {
+    width: 100%;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+  }
+  th, td {
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+  }
+
+  button {
+    float: left;
+    margin-left: 10px;
+    background: none;
+    border: 3px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+    display: block;
+    font-size: 2.6em;
+    font-weight: bold;
+    /* margin: 1em auto;
+    padding: 2em 6em; */
+    position: relative;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  
+  button::before,
+  button::after {
+    background: #fff;
+    content: '';
+    position: absolute;
+    z-index: -1;
+  }
+  
+  button:hover {
+    color: #2ecc71;
+  }
+
+
+
 
 /* Modal Popup 1 */
 .background {
@@ -34,7 +85,8 @@ html, body{
     opacity: 1;
     z-index: 1000;
     transition: all .5s;
-    color: red;
+    background: #2ecc71;
+    /* color: red; */
   }
   
   .window {
