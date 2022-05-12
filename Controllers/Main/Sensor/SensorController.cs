@@ -28,13 +28,14 @@ public class SensorController : Controller
     [HttpPost]
     public IActionResult RegistSensor(string sensor_id,
     string address, string building_name, string dong, string floor, string ho,
-    string number)
+    string number, string plan, string x, string y)
     {
-        Console.WriteLine("Regist sensor: {0} {1} {2} {3} {4} {5} {6}",sensor_id,
-        address, building_name, dong, floor, ho, number);
-        // RegistSensorModel.InsertSensorInfo(sensor_id, address, building_name, dong, floor, ho, number);
-        RegistSensorModel.ReadSensorInfo();
+        Console.WriteLine("Regist sensor: {0} {1} {2} {3} {4} {5} {6} {7}",sensor_id,
+        address, building_name, dong, floor, ho, number, plan);
+        RegistSensorModel.InsertSensorInfo(sensor_id, address, building_name, dong, floor, ho, number, plan, x, y);
+        // RegistSensorModel.ReadSensorInfo();
 
-        return NoContent();
+        // return NoContent();
+        return Redirect("/home/main/registsensor");
     }
 }

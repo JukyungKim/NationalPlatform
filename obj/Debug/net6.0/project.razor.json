@@ -45,39 +45,6 @@
         }
       },
       {
-        "HashCode": -2035835467,
-        "Kind": "Components.Component",
-        "Name": "NationalPlatform.Views.Shared.RegistPlan",
-        "AssemblyName": "NationalPlatform",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "RegistPlan"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "NationalPlatform.Views.Shared.RegistPlan"
-        }
-      },
-      {
-        "HashCode": 1149720610,
-        "Kind": "Components.Component",
-        "Name": "NationalPlatform.Views.Shared.RegistPlan",
-        "AssemblyName": "NationalPlatform",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "NationalPlatform.Views.Shared.RegistPlan"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "NationalPlatform.Views.Shared.RegistPlan",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
         "HashCode": -725059450,
         "Kind": "Components.Component",
         "Name": "NationalPlatform.Views.Shared.TestRazor",
@@ -107,6 +74,39 @@
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "NationalPlatform.Views.Shared.TestRazor",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -2035835467,
+        "Kind": "Components.Component",
+        "Name": "NationalPlatform.Views.Shared.RegistPlan",
+        "AssemblyName": "NationalPlatform",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "RegistPlan"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "NationalPlatform.Views.Shared.RegistPlan"
+        }
+      },
+      {
+        "HashCode": 1149720610,
+        "Kind": "Components.Component",
+        "Name": "NationalPlatform.Views.Shared.RegistPlan",
+        "AssemblyName": "NationalPlatform",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "NationalPlatform.Views.Shared.RegistPlan"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "NationalPlatform.Views.Shared.RegistPlan",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },

@@ -37,7 +37,7 @@ public class RegistSensorModel
         }
     }
 
-    static public void InsertSensorInfo(string id, string address, string name, string dong, string floor, string ho, string num)
+    static public void InsertSensorInfo(string id, string address, string name, string dong, string floor, string ho, string num, string plan, string x, string y)
     {
         using (var conn = new NpgsqlConnection(
                     "host=localhost;username=postgres;password=1234;database=nationaldb"))
@@ -48,8 +48,8 @@ public class RegistSensorModel
                 using (var cmd = new NpgsqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = String.Format("INSERT INTO sensor_info VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');",
-                    id, address, name, dong, floor, ho, num);
+                    cmd.CommandText = String.Format("INSERT INTO sensor_info VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}');",
+                    id, address, name, dong, floor, ho, num, plan, x, y);
                     using (var reader = cmd.ExecuteReader())
                     {
                         Console.WriteLine(cmd.CommandText);
@@ -92,6 +92,9 @@ public class RegistSensorModel
                             Console.Write(reader.GetString(4) + " ");
                             Console.Write(reader.GetString(5) + " ");
                             Console.Write(reader.GetString(6) + " ");
+                            Console.Write(reader.GetString(7) + " ");
+                            Console.Write(reader.GetString(8) + " ");
+                            Console.Write(reader.GetString(9) + " ");
                             Console.Write("\n");
                         }
                     }

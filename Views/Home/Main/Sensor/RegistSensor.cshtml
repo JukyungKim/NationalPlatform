@@ -10,7 +10,7 @@
 }
 <head>
   <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.js"></script>
-  <link rel="stylesheet" href="~/css/main/sensor/regist_sensor.css">
+  <link rel="stylesheet" href="~/css/main/sensor/regist_sensor.css?after">
   <script src="~/js/main/sensor/regist_sensor.js"></script>  
 </head>
 
@@ -33,6 +33,7 @@
         <th>층</th>
         <th>호</th>
         <th>번호</th>
+        <th>도면 이름</th>
       </tr>
     </thread>
     <tbody>
@@ -68,7 +69,7 @@
                               <td>@reader.GetString(4)</td>
                               <td>@reader.GetString(5)</td>
                               <td>@reader.GetString(6)</td>
-
+                              <td>@reader.GetString(7)</td>
                             </tr>
                         }
                     }
@@ -149,8 +150,12 @@
           <p style="display:inline" class="sensor_info">층</p>  <input type="text" class="sensor_info_input" name="floor"><br>
           <p style="display:inline" class="sensor_info">호</p>  <input type="text" class="sensor_info_input" name="ho"><br>
           <p style="display:inline" class="sensor_info">번호</p>  <input type="text" class="sensor_info_input" name="number"><br>
+          <p style="display:inline" class="sensor_info">도면 이름</p>  <input type="text" class="sensor_info_input" name="plan"><br>
+          <p style="display:inline" class="sensor_info">좌표 X</p>  <input type="text" class="sensor_info_input" name="x"><br>
+          <p style="display:inline" class="sensor_info">좌표 Y</p>  <input type="text" class="sensor_info_input" name="y"><br>
         </form>
-        <button type="submit" form="regist_sensor_form" class="close">추가하기</button>
+        <button type="submit" form="regist_sensor_form" class="close">추가</button>
+        <button class="cancel">취소</button>
       </div>
     </div>
   </div>

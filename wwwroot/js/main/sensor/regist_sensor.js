@@ -25,6 +25,7 @@ window.onload = function () {
 
     document.querySelector(".btn_add_sensor").addEventListener('click', show);
     document.querySelector(".close").addEventListener('click', close);
+    document.querySelector(".cancel").addEventListener('click', close);
 
     document.querySelector(".openBtn").addEventListener("click", open);
     document.querySelector(".closeBtn").addEventListener("click", close2);
