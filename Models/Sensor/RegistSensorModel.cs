@@ -67,6 +67,36 @@ public class RegistSensorModel
         }
     }
 
+    static public void RemoveSensor(string id)
+    {
+        using (var conn = new NpgsqlConnection(
+                    "host=localhost;username=postgres;password=1234;database=nationaldb"))
+        {
+            try
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = String.Format("DELETE FROM sensor_info WHERE id='{0}';", id);
+                    Console.WriteLine("Remove Sensor : {0}", cmd.CommandText);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        Console.WriteLine(cmd.CommandText);
+                        while (reader.Read())
+                        {
+                            Console.Write(reader.GetString(0));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+    }
+
     static public void ReadSensorInfo()
     {
         using (var conn = new NpgsqlConnection(

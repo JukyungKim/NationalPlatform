@@ -34,6 +34,7 @@
         <th>호</th>
         <th>번호</th>
         <th>도면 이름</th>
+        <th>삭제</th>
       </tr>
     </thread>
     <tbody>
@@ -52,24 +53,44 @@
                         Console.WriteLine(cmd.CommandText);
                         while (reader.Read())
                         {
-                            Console.Write(reader.GetString(0) + " ");
+                            @* Console.Write(reader.GetString(0) + " ");
                             Console.Write(reader.GetString(1) + " ");
                             Console.Write(reader.GetString(2) + " ");
                             Console.Write(reader.GetString(3) + " ");
                             Console.Write(reader.GetString(4) + " ");
                             Console.Write(reader.GetString(5) + " ");
                             Console.Write(reader.GetString(6) + " ");
-                            Console.Write("\n");
-                            <tr>
+                            Console.Write("\n"); *@
+                            
+                            @* int length = 0;
+                            while(reader.Read()){
+                              length++;
+                            } *@
 
-                              <td>@reader.GetString(0)</td>
+                            <tr>
+                              @for(int i = 0; i < 8; i++){
+                                if(reader.IsDBNull(i)){
+                                  Console.WriteLine("String is null");
+                                  <td></td>
+                                }
+                                else{
+                                  <td>@reader.GetString(i)</td>
+                                }
+                              }
+                              @* <td>@reader.GetString(0)</td>
                               <td>@reader.GetString(1)</td>
                               <td>@reader.GetString(2)</td>
                               <td>@reader.GetString(3)</td>
                               <td>@reader.GetString(4)</td>
                               <td>@reader.GetString(5)</td>
                               <td>@reader.GetString(6)</td>
-                              <td>@reader.GetString(7)</td>
+                              <td>@reader.GetString(7)</td> *@
+                              <td>
+                                <form asp-controller="Sensor" asp-action="RemoveSensor" method="post">
+                                  <input type="hidden" value=@reader.GetString(0) name="sensorId" />
+                                  <input id="load_plan" type='submit' value="삭제" />
+                                </form>
+                              </td>
                             </tr>
                         }
                     }

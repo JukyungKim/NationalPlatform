@@ -38,4 +38,11 @@ public class SensorController : Controller
         // return NoContent();
         return Redirect("/home/main/registsensor");
     }
+    [HttpPost]
+    public IActionResult RemoveSensor(string sensorId)
+    {
+        Console.WriteLine("RemoveSensor Id : {0}", sensorId);
+        RegistSensorModel.RemoveSensor(sensorId);
+        return Redirect("/home/main/registsensor");
+    }
 }
