@@ -42,13 +42,43 @@ public class RegistPlanModel
             }
         }
     }
-    public static string ReadImage()
+
+    static public void RemovePlan(string planName)
+    {
+        using (var conn = new NpgsqlConnection(
+                    "host=localhost;username=postgres;password=1234;database=nationaldb"))
+        {
+            try
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = String.Format("DELETE FROM plan WHERE plan_image_name='{0}';", planName);
+                    Console.WriteLine("Remove Plan : {0}", cmd.CommandText);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        Console.WriteLine(cmd.CommandText);
+                        while (reader.Read())
+                        {
+                            Console.Write(reader.GetString(0));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+    }
+    public static string ReadImage(string planImageName)
     {
         Console.WriteLine("Read image");
         string connString = "host=localhost;username=postgres;password=1234;database=nationaldb";
         using (var conn = new NpgsqlConnection(connString))
         {
-            string sQL = "SELECT plan_image from plan WHERE plan_image_name = '도면1'";
+            string sQL = string.Format("SELECT plan_image from plan WHERE plan_image_name = '{0}'", planImageName);
             using (var command = new NpgsqlCommand(sQL, conn))
             {
                 byte[] productImageByte = null;

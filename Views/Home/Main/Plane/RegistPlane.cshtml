@@ -1,4 +1,5 @@
 @model NationalPlatform.Controllers.PlanController
+@using Npgsql
 @{
     var planImage = ViewData["PlanImage"];
     Console.WriteLine(planImage);
@@ -52,9 +53,100 @@
     </div>
      <div class="image">
             <img src="@planImage" width="500px" style="width:500; height:300px; border: 3px solid black;">
-        </div>
+    </div>
+
+
+    <table>
+    <thread>
+      <tr>
+        <th>도면 이름</th>
+        <th>주소</th>
+        <th>건물 이름</th>
+        <th>동</th>
+        <th>층</th>
+        <th>호</th>
+        <th>삭제</th>
+      </tr>
+    </thread>
+    <tbody>
+      @using (var conn = new NpgsqlConnection(
+                    "host=localhost;username=postgres;password=1234;database=nationaldb"))
+        {
+            try
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    Console.WriteLine("Start read plan");
+                    cmd.Connection = conn;
+                    cmd.CommandText = String.Format("SELECT plan_image_name, address, building_name, dong, floor, ho FROM plan ORDER BY plan_image_name DESC");
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        Console.WriteLine(cmd.CommandText);
+                        while (reader.Read())
+                        {
+                            string pName = reader.GetString(0);
+                            Console.WriteLine("reader test : " + pName);
+                            
+                            Console.Write(reader.GetString(0) + " ");
+                            @* Console.Write(reader.GetString(1) + " ");
+                            Console.Write(reader.GetString(2) + " ");
+                            Console.Write(reader.GetString(3) + " ");
+                            Console.Write(reader.GetString(4) + " "); *@
+                            @* Console.Write(reader.GetString(5) + " "); *@
+                            @* Console.Write(reader.GetString(6) + " "); *@
+                            Console.Write("\n");
+                            
+                            @* int length = 0;
+                            while(reader.Read()){
+                              length++;
+                            } *@
+
+                            <tr>
+                              @for(int i = 0; i < 6; i++){
+                                if(reader.IsDBNull(i)){
+                                  Console.WriteLine("String is null");
+                                  <td></td>
+                                }
+                                else{
+                                  <td>@reader.GetString(i)</td>
+                                }
+                              }
+
+                              @* <td>@reader.GetString(0)</td>
+                              <td>@reader.GetString(1)</td>
+                              <td>@reader.GetString(2)</td>
+                              <td>@reader.GetString(3)</td>
+                              <td>@reader.GetString(4)</td>
+                              <td>@reader.GetString(5)</td>
+                              <td>@reader.GetString(6)</td>
+                              <td>@reader.GetString(7)</td> *@
+                              <td>
+                                <form asp-controller="Plan" asp-action="RemovePlan" method="post">
+                                    <input type="hidden" value="@pName" name="planName" />
+                                  @* <input type="hidden" value=@reader.GetString(0) name="planName" /> *@
+                                  <input id="load_plan" type='submit' value="삭제" />
+                                </form>
+                              </td>
+                            </tr>
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+    </tbody>
+  </table>
 </body>
 
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
 
 @* <form enctype="multipart/form-data" method="post">
     <dl>

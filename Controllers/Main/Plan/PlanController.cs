@@ -39,7 +39,7 @@ public class PlanController : Controller
             Console.WriteLine("Image Upload");
             Console.WriteLine(file.FileName);
             RegistPlanModel.InsertImage(file, plan_image_name, building_name, dong, floor, ho);
-            imagePath = RegistPlanModel.ReadImage();
+            imagePath = RegistPlanModel.ReadImage(plan_image_name);
             ViewData["PlanImage"] = imagePath;
         }        
 
@@ -76,6 +76,12 @@ public class PlanController : Controller
         return NoContent();
     }
 
-    
+    [HttpPost]
+    public IActionResult RemovePlan(string planName)
+    {
+        Console.WriteLine("Remove plan name : {0}", planName);
+        RegistPlanModel.RemovePlan(planName);
+        return Redirect("/main/registPlane");
+    }
 }
 

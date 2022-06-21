@@ -172,8 +172,8 @@
           <p style="display:inline" class="sensor_info">호</p>  <input type="text" class="sensor_info_input" name="ho"><br>
           <p style="display:inline" class="sensor_info">번호</p>  <input type="text" class="sensor_info_input" name="number"><br>
           <p style="display:inline" class="sensor_info">도면 이름</p>  <input type="text" class="sensor_info_input" name="plan"><br>
-          <p style="display:inline" class="sensor_info">좌표 X</p>  <input type="text" class="sensor_info_input" name="x"><br>
-          <p style="display:inline" class="sensor_info">좌표 Y</p>  <input type="text" class="sensor_info_input" name="y"><br>
+          @* <p style="display:inline" class="sensor_info">좌표 X</p>  <input type="text" class="sensor_info_input" name="x"><br>
+          <p style="display:inline" class="sensor_info">좌표 Y</p>  <input type="text" class="sensor_info_input" name="y"><br> *@
         </form>
         <button type="submit" form="regist_sensor_form" class="close">추가</button>
         <button class="cancel">취소</button>
@@ -193,7 +193,11 @@
   </div>
 </body>
 
-
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
 
 <style>
   #table_title_region {

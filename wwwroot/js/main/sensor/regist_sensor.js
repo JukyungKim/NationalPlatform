@@ -1,4 +1,13 @@
 
+ window.onpopstate = function(event){
+     if(event){
+         console.log("뒤로가기");
+         var link = "https://localhost:5001/home/main";
+         location.href = link;
+         location.replace(link);
+         window.open(link);
+     }
+ }
 
 function show() {
     document.querySelector(".background").className = "background btn_add_sensor";
@@ -27,9 +36,9 @@ window.onload = function () {
     document.querySelector(".close").addEventListener('click', close);
     document.querySelector(".cancel").addEventListener('click', close);
 
-    document.querySelector(".openBtn").addEventListener("click", open);
-    document.querySelector(".closeBtn").addEventListener("click", close2);
-    document.querySelector(".bg").addEventListener("click", close2);
+    // document.querySelector(".openBtn").addEventListener("click", open);
+    // document.querySelector(".closeBtn").addEventListener("click", close2);
+    // document.querySelector(".bg").addEventListener("click", close2);
 }
 
 
