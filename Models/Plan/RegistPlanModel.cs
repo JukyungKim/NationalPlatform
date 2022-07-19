@@ -11,7 +11,7 @@ public class RegistPlanModel
 
     }
 
-    public static void InsertImage(IFormFile file, string plan_image_name, 
+    public static void InsertImage(IFormFile file, string address, string plan_image_name, 
         string building_name, string dong, string floor, string ho)
     {
         // FileStream fileStream = new FileStream("D:\\img.png", FileMode.Open, FileAccess.Read);
@@ -26,8 +26,8 @@ public class RegistPlanModel
         using (var conn = new NpgsqlConnection(connString))
         {
             // string sQL = "INSERT INTO plan (plan_image_name, plan_image) VALUES('70', @Image)";
-            string sQL = String.Format("INSERT INTO plan (plan_image_name, plan_image, building_name, dong, floor, ho) VALUES('{0}', @Image, '{1}', '{2}', '{3}', '{4}')",
-                plan_image_name, building_name, dong, floor, ho);
+            string sQL = String.Format("INSERT INTO plan (plan_image_name, plan_image, building_name, dong, floor, ho, address) VALUES('{0}', @Image, '{1}', '{2}', '{3}', '{4}', '{5}')",
+                plan_image_name, building_name, dong, floor, ho, address);
             using (var command = new NpgsqlCommand(sQL, conn))
             {
                 NpgsqlParameter param = command.CreateParameter();

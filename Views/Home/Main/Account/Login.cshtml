@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        .login {
+            width: 500px;
+            margin: 200px auto auto auto;
+        }
+        .title{
+            margin: 0px 0px 0px 150px;
+        }
+        .id{
+            margin: 20px 0px 0px 160px;
+        }
+        .pw{
+            margin: 20px 0px 0px 160px;
+        }
+        .button{
+            margin: 20px 0px 0px 160px;
+        }
+    </style>
+      <link rel="stylesheet" href="~/css/main/account/login.css">
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/main/account/login.js?after"></script>  
+</head>
+<body>
+    <div class = "login">
+        <h1 class = "title">로그인</h1>
+        <hr>
+            <form asp-controller="Account" asp-action="CheckLogin" method="post" enctype="multipart/form-data">
+                <p class = "id">ID: <input type="text" name="id"/></p>
+                <p class = "pw">PW: <input id="pw" type="text" name="password"/></p>
+                <input class="button" type="submit" value="로그인" onclick="login()">
+            </form>
+            <form method="post">
+                <button class="button" id="btn-2" asp-controller="Account" asp-action="ChangePasswordPage">비밀번호 변경</button>
+            </form>
+        <hr>
+    </div>
+</body>
+</html>

@@ -1,6 +1,7 @@
 using System.Net;
 using NationalPlatform.Models;
 using Microsoft.AspNetCore.Connections;
+using NationalPlatform.Controllers;
 
 
 Console.WriteLine("National platform starts");
@@ -11,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddServerSideBlazor(); // razor
+builder.Services.AddSignalR();
 
 builder.WebHost.ConfigureServices(services =>
 {
@@ -56,7 +58,7 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}"
 );
 
-
+app.MapHub<AccountHub>("/accountHub");
 
 app.MapBlazorHub(); // razor
 

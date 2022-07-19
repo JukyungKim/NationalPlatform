@@ -3,6 +3,7 @@
 }
 
 <link rel="stylesheet" href="~/css/main/main.css">
+<script src="~/js/main/main.js"></script>  
 
 <!DOCTYPE html>
 
@@ -14,10 +15,10 @@
         재난 안전 관리 플랫폼
     </div>
     <div class="container">
-        <form method="post">
+        <form method="get">
             <button class="button" id="btn-1" asp-controller="Main" asp-action="RegistSensor">센서 등록</button>
         </form>
-        <form method="post">
+        <form method="get">
             <button class="button" id="btn-2" asp-controller="Main" asp-action="RegistPlane">도면 등록</button>
         </form>
         @* <form method="post">

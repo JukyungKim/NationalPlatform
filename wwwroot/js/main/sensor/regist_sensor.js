@@ -9,6 +9,15 @@
      }
  }
 
+ setInterval(() => {
+    logout();
+}, 1000 * 60 * 10);
+
+function logout()
+{
+    window.location.href = "home/login";
+}
+
 function show() {
     document.querySelector(".background").className = "background btn_add_sensor";
 }

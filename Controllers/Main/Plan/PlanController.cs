@@ -31,14 +31,14 @@ public class PlanController : Controller
 
     [HttpPost]
     public IActionResult UploadImage(IFormFile file, string plan_image_name, 
-        string building_name, string dong, string floor, string ho)
+        string address, string building_name, string dong, string floor, string ho)
     {
         if (file != null)
         {
             string imagePath;
             Console.WriteLine("Image Upload");
             Console.WriteLine(file.FileName);
-            RegistPlanModel.InsertImage(file, plan_image_name, building_name, dong, floor, ho);
+            RegistPlanModel.InsertImage(file, address, plan_image_name, building_name, dong, floor, ho);
             imagePath = RegistPlanModel.ReadImage(plan_image_name);
             ViewData["PlanImage"] = imagePath;
         }        

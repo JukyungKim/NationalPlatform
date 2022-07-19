@@ -49,3 +49,4 @@ D:\Kim\Project\.NET\NationalPlatform\bin\Debug\net6.0\Microsoft.AspNetCore.Compo
 D:\Kim\Project\.NET\NationalPlatform\bin\Debug\net6.0\Microsoft.AspNetCore.Metadata.dll
 D:\Kim\Project\.NET\NationalPlatform\bin\Debug\net6.0\Microsoft.JSInterop.dll
 D:\Kim\Project\.NET\NationalPlatform\bin\Debug\net6.0\System.IO.Pipelines.dll
+D:\Kim\Project\.NET\NationalPlatform\bin\Debug\net6.0\libman.json

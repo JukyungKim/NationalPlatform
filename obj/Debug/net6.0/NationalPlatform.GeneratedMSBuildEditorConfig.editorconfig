@@ -8,97 +8,109 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = NationalPlatform
 build_property.RootNamespace = NationalPlatform
-build_property.ProjectDir = D:\Kim\Project\.NET\NationalPlatform\
+build_property.ProjectDir = d:\Kim\Project\.NET\NationalPlatform\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Kim\Project\.NET\NationalPlatform
+build_property.MSBuildProjectDirectory = d:\Kim\Project\.NET\NationalPlatform
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/Shared/Plan.razor]
+[d:/Kim/Project/.NET/NationalPlatform/Views/Shared/Plan.razor]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBsYW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/Shared/RegistPlan.razor]
+[d:/Kim/Project/.NET/NationalPlatform/Views/Shared/RegistPlan.razor]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFJlZ2lzdFBsYW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/Shared/TestRazor.razor]
+[d:/Kim/Project/.NET/NationalPlatform/Views/Shared/TestRazor.razor]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFRlc3RSYXpvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/_Imports.razor]
+[d:/Kim/Project/.NET/NationalPlatform/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/Home/Index.cshtml]
+[d:/Kim/Project/.NET/NationalPlatform/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/Home/Main/Account/RegistAccount.cshtml]
+[d:/Kim/Project/.NET/NationalPlatform/Views/Home/Main/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNYWluXEFjY291bnRcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Kim/Project/.NET/NationalPlatform/Views/Home/Main/Account/LogInfo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNYWluXEFjY291bnRcTG9nSW5mby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Kim/Project/.NET/NationalPlatform/Views/Home/Main/Account/Password.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNYWluXEFjY291bnRcUGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Kim/Project/.NET/NationalPlatform/Views/Home/Main/Account/RegistAccount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNYWluXEFjY291bnRcUmVnaXN0QWNjb3VudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/Home/Main/Main.cshtml]
+[d:/Kim/Project/.NET/NationalPlatform/Views/Home/Main/Main.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNYWluXE1haW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/Home/Main/Plane/RegistPlane.cshtml]
+[d:/Kim/Project/.NET/NationalPlatform/Views/Home/Main/Plane/RegistPlane.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNYWluXFBsYW5lXFJlZ2lzdFBsYW5lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/Home/Main/Sensor/RegistSensor.cshtml]
+[d:/Kim/Project/.NET/NationalPlatform/Views/Home/Main/Sensor/RegistSensor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNYWluXFNlbnNvclxSZWdpc3RTZW5zb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/Home/Privacy.cshtml]
+[d:/Kim/Project/.NET/NationalPlatform/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/Shared/Error.cshtml]
+[d:/Kim/Project/.NET/NationalPlatform/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/Shared/_ValidationScriptsPartial.cshtml]
+[d:/Kim/Project/.NET/NationalPlatform/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/Test/test.cshtml]
+[d:/Kim/Project/.NET/NationalPlatform/Views/Test/test.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVzdFx0ZXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/Test/test2.cshtml]
+[d:/Kim/Project/.NET/NationalPlatform/Views/Test/test2.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVzdFx0ZXN0Mi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/Test/test3.cshtml]
+[d:/Kim/Project/.NET/NationalPlatform/Views/Test/test3.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVzdFx0ZXN0My5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/Test/test4.cshtml]
+[d:/Kim/Project/.NET/NationalPlatform/Views/Test/test4.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVzdFx0ZXN0NC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/Test/test5.cshtml]
+[d:/Kim/Project/.NET/NationalPlatform/Views/Test/test5.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVzdFx0ZXN0NS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/Test/test6.cshtml]
+[d:/Kim/Project/.NET/NationalPlatform/Views/Test/test6.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVzdFx0ZXN0Ni5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/Test/test7.cshtml]
+[d:/Kim/Project/.NET/NationalPlatform/Views/Test/test7.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVzdFx0ZXN0Ny5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/_ViewImports.cshtml]
+[d:/Kim/Project/.NET/NationalPlatform/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/_ViewStart.cshtml]
+[d:/Kim/Project/.NET/NationalPlatform/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kim/Project/.NET/NationalPlatform/Views/Shared/_Layout.cshtml]
+[d:/Kim/Project/.NET/NationalPlatform/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-nkoobcauil

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yUmrHEjtghys59Dosu1R5RArjckWYKS2yfK1xw1OQYw=",
+  "Hash": "OhtvvEz012Q5M16FPOWGI+CZ5ecUjWsZ1jf0be5hUzI=",
   "Source": "NationalPlatform",
   "BasePath": "_content/NationalPlatform",
   "Mode": "Default",
@@ -1411,6 +1411,40 @@
       "OriginalItemSpec": "wwwroot\\images\\test.png"
     },
     {
+      "Identity": "D:\\Kim\\Project\\.NET\\NationalPlatform\\wwwroot\\js\\main\\account\\login.js",
+      "SourceId": "NationalPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Kim\\Project\\.NET\\NationalPlatform\\wwwroot\\",
+      "BasePath": "_content/NationalPlatform",
+      "RelativePath": "js/main/account/login.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\main\\account\\login.js"
+    },
+    {
+      "Identity": "D:\\Kim\\Project\\.NET\\NationalPlatform\\wwwroot\\js\\main\\account\\password.js",
+      "SourceId": "NationalPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Kim\\Project\\.NET\\NationalPlatform\\wwwroot\\",
+      "BasePath": "_content/NationalPlatform",
+      "RelativePath": "js/main/account/password.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\main\\account\\password.js"
+    },
+    {
       "Identity": "D:\\Kim\\Project\\.NET\\NationalPlatform\\wwwroot\\js\\main\\main.js",
       "SourceId": "NationalPlatform",
       "SourceType": "Discovered",
@@ -1428,6 +1462,23 @@
       "OriginalItemSpec": "wwwroot\\js\\main\\main.js"
     },
     {
+      "Identity": "D:\\Kim\\Project\\.NET\\NationalPlatform\\wwwroot\\js\\main\\plan\\regist_plan.js",
+      "SourceId": "NationalPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Kim\\Project\\.NET\\NationalPlatform\\wwwroot\\",
+      "BasePath": "_content/NationalPlatform",
+      "RelativePath": "js/main/plan/regist_plan.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\main\\plan\\regist_plan.js"
+    },
+    {
       "Identity": "D:\\Kim\\Project\\.NET\\NationalPlatform\\wwwroot\\js\\main\\sensor\\regist_sensor.js",
       "SourceId": "NationalPlatform",
       "SourceType": "Discovered",
@@ -1443,6 +1494,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\main\\sensor\\regist_sensor.js"
+    },
+    {
+      "Identity": "D:\\Kim\\Project\\.NET\\NationalPlatform\\wwwroot\\js\\signalr\\dist\\browser\\signalr.js",
+      "SourceId": "NationalPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Kim\\Project\\.NET\\NationalPlatform\\wwwroot\\",
+      "BasePath": "_content/NationalPlatform",
+      "RelativePath": "js/signalr/dist/browser/signalr.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\signalr\\dist\\browser\\signalr.js"
     },
     {
       "Identity": "D:\\Kim\\Project\\.NET\\NationalPlatform\\wwwroot\\js\\site.js",
