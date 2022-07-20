@@ -1,0 +1,95 @@
+@using Npgsql
+@{
+
+}
+<head>
+  @* <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.js"></script> *@
+  <link rel="stylesheet" href="~/css/main/plan/regist_plan.css">
+  <script src="~/js/main/plan/regist_plan.js"></script>  
+</head>
+
+
+<body>
+    <div class="title">
+        로그 정보
+    </div>
+
+
+    <table>
+    <thread>
+      <tr>
+        <th>ID</th>
+        <th>접속 시간</th>
+        <th>접속 여부</th>
+      </tr>
+    </thread>
+    <tbody>
+      @using (var conn = new NpgsqlConnection(
+                    "host=localhost;username=postgres;password=1234;database=nationaldb"))
+        {
+            try
+                {
+                    conn.Open();
+                    using (var cmd = new NpgsqlCommand())
+                    {
+                        Console.WriteLine("Start read log_info");
+                        cmd.Connection = conn;
+                        cmd.CommandText = String.Format("SELECT id, time, pass FROM log_info ORDER BY time DESC");
+                        using (StreamWriter csv = new StreamWriter(@"C:\log_info.csv"))
+                        {
+                            using (var reader = cmd.ExecuteReader())
+                            {
+                                Console.WriteLine(cmd.CommandText);
+                                while (reader.Read())
+                                {
+
+                                    string content = "";
+                                    content = reader.GetString(0) + "," + reader.GetString(1) + "," + reader.GetString(2);
+                                    csv.WriteLine(content);
+
+
+
+                                    string pName = reader.GetString(0);
+                                    Console.WriteLine("reader test : " + pName);
+
+                                    Console.Write(reader.GetString(0) + " ");
+                                    @* Console.Write(reader.GetString(1) + " ");
+                                        Console.Write(reader.GetString(2) + " ");
+                                        Console.Write(reader.GetString(3) + " ");
+                                        Console.Write(reader.GetString(4) + " "); *@
+                                    @* Console.Write(reader.GetString(5) + " "); *@
+                                    @* Console.Write(reader.GetString(6) + " "); *@
+                                    Console.Write("\n");
+
+                                    @* int length = 0;
+                                        while(reader.Read()){
+                                        length++;
+                                        } *@
+
+                                    <tr>
+                                        @for (int i = 0; i < 3; i++)
+                                        {
+                                            if (reader.IsDBNull(i))
+                                            {
+                                                Console.WriteLine("String is null");
+                                                <td></td>
+                                            }
+                                            else
+                                            {
+                                                <td>@reader.GetString(i)</td>
+                                            }
+                                        }
+                                    </tr>
+                                }
+                            }
+                        }
+                    }
+                }
+            catch (Exception ex)
+            {
+
+            }
+        }
+    </tbody>
+  </table>
+</body>

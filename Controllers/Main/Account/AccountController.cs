@@ -38,12 +38,19 @@ public class AccountController : Controller
         return View("/views/home/main/account/login.cshtml");
     }
 
+    public IActionResult LogInfo()
+    {
+        Console.WriteLine("Log info");
+        return View("/views/home/main/account/loginfo.cshtml");
+    }
+
     public IActionResult CheckLogin(string id, string password)
     {
         Console.WriteLine("Check login : {0} {1}", id, password);
 
         int ok;
         ok = AccountModel.CheckAccount(id, password);
+        AccountModel.SaveLogInfo(id, ok);
 
         if(ok == 0){
             return NoContent();
@@ -61,8 +68,10 @@ public class AccountController : Controller
         return View("/views/home/main/account/password.cshtml");
     }
 
-    public IActionResult ChangePassword(string password1, string password2)
+    public IActionResult ChangePassword(string password0, string password1, string password2)
     {
+        var result = AccountModel.CheckAccount("master", password0);
+
         Console.WriteLine("Change password");
         bool hasChar = false;
         bool hasNum = false;
@@ -114,6 +123,10 @@ public class AccountController : Controller
             Console.WriteLine("Not same password");
             return NoContent();
         }
+        else if(result == 0){
+            Console.WriteLine("Invalid password");
+            return NoContent();
+        }
         else{
             AccountModel.UpdatePassword("master", password1);
             return View("/views/home/main/account/login.cshtml");
@@ -137,20 +150,6 @@ public class AccountController : Controller
         string res = "this is return value";
         // do here some operation  
         return res;
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> DeleteCompany(string a)
-    {
-        Console.WriteLine("Delete company");
-        // Do some stuff
-        return Ok();
-    }
-
-    [HttpPost]
-    public IActionResult Test()
-    {
-        return RedirectToAction("/views/home/main/account/login.cshtml");
     }
 }
 

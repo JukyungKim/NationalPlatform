@@ -165,6 +165,39 @@ public class AccountModel
         return ok;
     }
 
+    public static void SaveLogInfo(string id, int pass)
+    {
+        string time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:dd");
+        bool pass2 = false;
+        if(pass == 1) pass2 = true;
+        using (var conn = new NpgsqlConnection(
+                    "host=localhost;username=postgres;password=1234;database=nationaldb"))
+        {
+            try
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = String.Format("INSERT INTO log_info (id, time, pass) VALUES('{0}', '{1}', '{2}')", 
+                        id, time, pass2.ToString());
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        Console.WriteLine(cmd.CommandText);
+                        while (reader.Read())
+                        {
+                            Console.Write(reader.GetString(0));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+    }
+
 
     public static PasswordScore CheckStrength(string password)
     {

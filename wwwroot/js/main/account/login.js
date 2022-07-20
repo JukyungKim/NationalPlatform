@@ -28,7 +28,6 @@ connection.on("LoginError", function(result){
     // pw = document.getElementById("pw1").value;
 
     if(result === 0){
-        alert("비밀 번호가 틀렸습니다.");   
+        alert("계정 정보가 정확하지 않습니다.");   
     }
-
 });

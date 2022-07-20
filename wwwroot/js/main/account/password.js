@@ -59,6 +59,7 @@ connection.start().then(function(){
 
 connection.on("LoginError", function(result){
     pw = document.getElementById("pw1").value;
+    pw2 = document.getElementById("pw2").value;
     var reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{10,}$/;
 
     if(result === 0){
@@ -66,10 +67,15 @@ connection.on("LoginError", function(result){
     }
     else if(false === reg.test(pw)) {
         alert('비밀번호는 10자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.');
-        }else {
+        }
+    else if(pw !== pw2){
+        alert('비밀번호가 같지 않습니다.');
+    }
+    else {
         console.log("통과");
-    } 
+    }
 });
+
 
 
 
