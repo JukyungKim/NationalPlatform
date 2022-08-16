@@ -1,5 +1,6 @@
+var connection = new signalR.HubConnectionBuilder().withUrl("/accountHub").build();
 
- window.onpopstate = function(event){
+window.onpopstate = function(event){
      if(event){
          console.log("뒤로가기");
          var link = "https://localhost:5001/home/main";
@@ -9,9 +10,32 @@
      }
  }
 
- setInterval(() => {
+setInterval(() => {
     logout();
 }, 1000 * 60 * 10);
+
+function checkSensorId()
+{
+    console.log("센서 id 추가 " + document.getElementById("sensor_id1").value);
+    sensor_id = document.getElementById("sensor_id1").value;
+    connection.invoke("CheckSensorId", sensor_id).catch(function (err){
+        return console.error(err.toString());
+    });
+}
+
+connection.start().then(function(){
+
+}).catch(function(err){
+    return console.error(err.toString());
+})
+
+connection.on("SensorId", function(result){
+    // pw = document.getElementById("pw1").value;
+    if(result === true){
+        alert("센서 ID가 중복됩니다.");
+    }
+});
+
 
 function logout()
 {

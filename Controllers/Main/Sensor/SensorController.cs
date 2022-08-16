@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
 using NationalPlatform.Models;
+using Microsoft.AspNetCore.SignalR;
 
 namespace NationalPlatform.Controllers;
 
@@ -32,12 +33,14 @@ public class SensorController : Controller
     {
         string x = "0";
         string y = "0";
+        bool result;
         Console.WriteLine("Regist sensor: {0} {1} {2} {3} {4} {5} {6} {7}",sensor_id,
         address, building_name, dong, floor, ho, number, plan);
-        RegistSensorModel.InsertSensorInfo(sensor_id, address, building_name, dong, floor, ho, number, plan, x, y);
+        result = RegistSensorModel.CheckSensorId(sensor_id);
+        if(result == false){
+            RegistSensorModel.InsertSensorInfo(sensor_id, address, building_name, dong, floor, ho, number, plan, x, y);
+        }
         // RegistSensorModel.ReadSensorInfo();
-
-        // return NoContent();
         // return RedirectToAction("/home/main/registsensor");
         return Redirect("/home/main/registsensor");
         // return View("/views/home/main/sensor/registsensor.cshtml");
@@ -52,3 +55,15 @@ public class SensorController : Controller
         return Redirect("/home/main/registsensor");
     }
 }
+
+public class SensorHub: Hub
+{
+    public async Task CheckSensorId(string id)
+    {
+        bool result;
+        result = RegistSensorModel.CheckSensorId(id);
+        Console.WriteLine("센서 id 체크 " + id + " " + result);
+        await Clients.All.SendAsync("SensorId", result);
+    }
+}
+

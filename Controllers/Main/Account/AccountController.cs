@@ -164,6 +164,13 @@ public class AccountHub: Hub
 
         await Clients.All.SendAsync("LoginError", result);
     }
+    public async Task CheckSensorId(string id)
+    {
+        Console.WriteLine("센서 id 체크 " + id);
+        bool result;
+        result = RegistSensorModel.CheckSensorId(id);
+        await Clients.All.SendAsync("SensorId", result);
+    }
 }
 
 
