@@ -18,13 +18,13 @@ public class AccountController : Controller
         _logger = logger;
  
     }
-    [Route("home/main/account")]
+    // [Route("home/main/account")]
     public IActionResult Index()
     {
         Console.WriteLine("Sensor index");
         return View("/views/home/main/account/account.cshtml");
     }
-    [Route("home/main/account/add")]
+    // [Route("home/main/account/add")]
     public IActionResult Add()
     {
         Console.WriteLine("Add sensor index");
@@ -170,6 +170,14 @@ public class AccountHub: Hub
         bool result;
         result = RegistSensorModel.CheckSensorId(id);
         await Clients.All.SendAsync("SensorId", result);
+    }
+
+    public async Task CheckPlanId(string id)
+    {
+        Console.WriteLine("도면 id 체크 " + id);
+        bool result;
+        result = RegistPlanModel.CheckPlanId(id);
+        await Clients.All.SendAsync("PlanId", result);
     }
 }
 

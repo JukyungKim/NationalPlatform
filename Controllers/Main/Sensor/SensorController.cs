@@ -13,13 +13,13 @@ public class SensorController : Controller
     {
         _logger = logger;
     }
-    [Route("home/main/sensor")]
+    // [Route("home/main/sensor")]
     public IActionResult Index()
     {
         Console.WriteLine("Sensor index");
         return View("/views/home/main/sensor/index.cshtml");
     }
-    [Route("home/main/sensor/add")]
+    // [Route("home/main/sensor/add")]
     public IActionResult Add()
     {
         Console.WriteLine("Add sensor index");

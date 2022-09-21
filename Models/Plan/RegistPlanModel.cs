@@ -43,6 +43,45 @@ public class RegistPlanModel
         }
     }
 
+    static public bool CheckPlanId(string id)
+    {
+        using (var conn = new NpgsqlConnection(
+                    "host=localhost;username=postgres;password=1234;database=nationaldb"))
+        {
+            try
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = String.Format("select * from plan where plan_image_name='{0}';", id);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        Console.WriteLine(cmd.CommandText);
+                        // while (reader.Read())
+                        // {
+                        //     Console.Write(reader.GetString(0));
+                        // }
+                        if(reader.Read()){
+                            Console.WriteLine("Exist sensor id");
+                            return true;
+                        }
+                        else{
+                            Console.WriteLine("Not exist sensor id");
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        return false;
+    }
+
     static public void RemovePlan(string planName)
     {
         using (var conn = new NpgsqlConnection(

@@ -19,7 +19,7 @@ public class MainController : Controller
         return View("/views/home/main/main.cshtml");
     }
 
-    [Route("home/main/registsensor")]
+    // [Route("home/main/registsensor")]
     public IActionResult RegistSensor()
     {
         Console.WriteLine("RegistSensor");
@@ -35,3 +35,4 @@ public class MainController : Controller
         return View("/views/home/main/account/RegistAccount.cshtml");
     }
 }
+

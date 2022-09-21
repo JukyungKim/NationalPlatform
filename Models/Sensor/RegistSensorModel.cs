@@ -75,6 +75,8 @@ public class RegistSensorModel
         return false;
     }
 
+    
+
     static public void InsertSensorInfo(string id, string address, string name, string dong, string floor, string ho, string num, string plan, string x, string y)
     {
         using (var conn = new NpgsqlConnection(

@@ -35,12 +35,16 @@ public class PlanController : Controller
     {
         if (file != null)
         {
-            string imagePath;
-            Console.WriteLine("Image Upload");
-            Console.WriteLine(file.FileName);
-            RegistPlanModel.InsertImage(file, address, plan_image_name, building_name, dong, floor, ho);
-            imagePath = RegistPlanModel.ReadImage(plan_image_name);
-            ViewData["PlanImage"] = imagePath;
+            bool result = RegistPlanModel.CheckPlanId(plan_image_name);
+            if(result == false){
+                string imagePath;
+                Console.WriteLine("Image Upload");
+                Console.WriteLine(file.FileName);
+                RegistPlanModel.InsertImage(file, address, plan_image_name, building_name, dong, floor, ho);
+                imagePath = RegistPlanModel.ReadImage(plan_image_name);
+                ViewData["PlanImage"] = imagePath;
+            }
+            
         }        
 
         return View("/views/home/main/plane/RegistPlane.cshtml");
