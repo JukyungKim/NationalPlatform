@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <div class="title">
+        재난 안전 관리 플랫폼 V1.0
+    </div>
     <meta charset="UTF-8">
     <title>Login</title>
     <style>
@@ -27,7 +30,7 @@
 </head>
 <body>
     <div class = "login">
-        <h1 class = "title">로그인</h1>
+        <h1 class = "sub_title">로그인</h1>
         <hr>
             <form asp-controller="Account" asp-action="CheckLogin" method="post" enctype="multipart/form-data">
                 <p class = "id">ID: <input type="text" name="id"/></p>
@@ -44,3 +47,16 @@
     </div>
 </body>
 </html>
+
+<style>
+
+.title{
+    text-align: center;
+    font-size: 80px;
+    color:beige
+}
+body {
+    background: #2ecc71;
+    font-size: 150.5%;
+  }
+</style>

@@ -12,7 +12,7 @@ public class MainController : Controller
     {
         _logger = logger;
     }
-    [Route("home/main")]
+    // [Route("home/main")]
     public IActionResult Index()
     {
         Console.WriteLine("Main page");

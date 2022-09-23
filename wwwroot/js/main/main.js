@@ -7,3 +7,4 @@ function logout()
 {
     window.location.href = "home/login";
 }
+

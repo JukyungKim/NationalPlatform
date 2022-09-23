@@ -2,7 +2,7 @@ using System.Net;
 using NationalPlatform.Models;
 using Microsoft.AspNetCore.Connections;
 using NationalPlatform.Controllers;
-
+using Microsoft.AspNetCore;
 
 Console.WriteLine("National platform starts");
 
@@ -14,8 +14,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddServerSideBlazor(); // razor
 builder.Services.AddSignalR();
 
+builder.WebHost.UseUrls();
+
 builder.WebHost.ConfigureServices(services =>
 {
+    // services.AddFramework(new IPEndPoint(IPAddress.Parse("0.0.0.0"), 5000));
     services.AddFramework(new IPEndPoint(IPAddress.Loopback, 5002));
 }).UseKestrel(options =>
 {
@@ -23,15 +26,22 @@ builder.WebHost.ConfigureServices(services =>
     {
         build.UseConnectionHandler<TcpConnectionHandlers>();
     });
-    // HTTP 5000
-    options.ListenLocalhost(5000);
-
-    // HTTPS 5001
-    options.ListenLocalhost(5001, builder =>
+    options.Listen(IPAddress.Parse("0.0.0.0"), 5000);
+    options.Listen(IPAddress.Parse("0.0.0.0"), 5001, builder =>
     {
         builder.UseHttps();
     });
+
+    // // HTTP 5000
+    // options.ListenLocalhost(5000);
+
+    // // HTTPS 5001
+    // options.ListenLocalhost(5001, builder =>
+    // {
+    //     builder.UseHttps();
+    // });
 });
+
 
 PipeServer.Start();
 ReceiveSensorData.Start();

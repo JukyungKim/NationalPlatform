@@ -15,6 +15,13 @@ connection.start().then(function(){
     return console.error(err.toString());
 })
 
+connection.on("PlanId", function(result){
+    // pw = document.getElementById("pw1").value;
+    if(result === true){
+        alert("도면 이름이 중복됩니다.");
+    }
+});
+
 function checkPlanId()
 {
     console.log("Plan id 추가 " + document.getElementById("plan_id").value);
@@ -24,9 +31,3 @@ function checkPlanId()
     });
 }
 
-connection.on("PlanId", function(result){
-    // pw = document.getElementById("pw1").value;
-    if(result === true){
-        alert("도면 이름이 중복됩니다.");
-    }
-});

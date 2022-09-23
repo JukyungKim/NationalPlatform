@@ -1,14 +1,14 @@
 var connection = new signalR.HubConnectionBuilder().withUrl("/accountHub").build();
 
-window.onpopstate = function(event){
-     if(event){
-         console.log("뒤로가기");
-         var link = "https://localhost:5001/home/main";
-         location.href = link;
-         location.replace(link);
-         window.open(link);
-     }
- }
+// window.onpopstate = function(event){
+//      if(event){
+//          console.log("뒤로가기");
+//          var link = "https://localhost:5001/home/main";
+//          location.href = link;
+//          location.replace(link);
+//          window.open(link);
+//      }
+//  }
 
 setInterval(() => {
     logout();

@@ -9,6 +9,11 @@ function login()
     });
 }
 
+history.pushState(null, null, location.href); 
+window.onpopstate = function(event) { 
+	history.go(1); 
+};
+
 setInterval(() => {
     logout();
 }, 1000 * 60 * 10);
