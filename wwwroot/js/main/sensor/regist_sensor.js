@@ -1,14 +1,22 @@
 var connection = new signalR.HubConnectionBuilder().withUrl("/accountHub").build();
 
+// history.pushState(null, null, location.href); 
 // window.onpopstate = function(event){
 //      if(event){
-//          console.log("뒤로가기");
-//          var link = "https://localhost:5001/home/main";
-//          location.href = link;
-//          location.replace(link);
-//          window.open(link);
+//         //  console.log("뒤로가기");
+//         //  var link = "https://localhost:5001/home/main";
+//         //  location.href = link;
+//         //  location.replace(link);
+//         //  window.open(link);
+        
 //      }
 //  }
+
+history.pushState(null, null, location.href); 
+window.onpopstate = function(event) { 
+	history.go(1); 
+};
+
 
 setInterval(() => {
     logout();
@@ -34,8 +42,11 @@ connection.on("SensorId", function(result){
     if(result === true){
         alert("센서 ID가 중복됩니다.");
     }
+    // window.location.reload();
+    setInterval(() => {
+        window.location.reload();
+    }, 1000);
 });
-
 
 function logout()
 {

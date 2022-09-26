@@ -33,6 +33,10 @@ public class PlanController : Controller
     public IActionResult UploadImage(IFormFile file, string plan_image_name, 
         string address, string building_name, string dong, string floor, string ho)
     {
+        if(file == null || plan_image_name == string.Empty){
+            return NoContent();
+        }
+
         if (file != null)
         {
             bool result = RegistPlanModel.CheckPlanId(plan_image_name);

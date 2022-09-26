@@ -14,6 +14,12 @@
     <div class="title">
         재난 안전 관리 플랫폼 V1.0
     </div>
+                <form method="post">
+                    <button class="button_log" id="change_password" asp-controller="Account" asp-action="ChangePasswordPage">비밀번호 변경</button>
+                </form>
+                <form method="post">
+                    <button class="button_log" id="log_info" asp-controller="Account" asp-action="LogInfo">로그 정보</button>
+                </form>
     <div class="container">
         <form method="get">
             <button class="button" id="btn-1" asp-controller="Main" asp-action="RegistSensor">센서 등록</button>

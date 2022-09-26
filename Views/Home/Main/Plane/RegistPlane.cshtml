@@ -18,7 +18,7 @@
     </div>
     <div class="regist">
         <form asp-controller="Plan" asp-action="UploadImage" method="post" enctype="multipart/form-data">
-            <input class="button" type="file" name="file"><br>
+            <input class="button" type="file" name="file" accept=".jpg, .png" onchange="checkFileUpload(this.value)"><br>
             <!---파일선택 컨트롤--->
             <ul>
                 <li class="plan_info">도면 이름</li>

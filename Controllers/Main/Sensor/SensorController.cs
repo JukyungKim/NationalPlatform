@@ -43,19 +43,23 @@ public class SensorController : Controller
         // RegistSensorModel.ReadSensorInfo();
         // return RedirectToAction("/home/main/registsensor");
         // return Redirect(Request.RawUrl);
-        return View("/views/home/main/sensor/registsensor.cshtml");
+        // return View("/views/home/main/sensor/registsensor.cshtml");
         // return RedirectToAction("Index");
         // return Redirect("/Sensor/RegistSensor"); 
+        // return RedirectToAction("RegistSensor", "Main");
+        return NoContent();
+
     }
-    [HttpPost]
+    // [HttpPost]
     public IActionResult RemoveSensor(string sensorId)
     {
         Console.WriteLine("RemoveSensor Id : {0}", sensorId);
         RegistSensorModel.RemoveSensor(sensorId);
         // return RedirectToAction("Success");
         // return Redirect("/home/main/registsensor");
-        // return Redirect("/Sensor/RegistSensor"); 
-        return View("/views/home/main/sensor/registsensor.cshtml");
+        return RedirectToAction("RegistSensor", "Main");
+        // return NoContent();
+        // return View("/views/home/main/sensor/registsensor.cshtml");
     }
 }
 
