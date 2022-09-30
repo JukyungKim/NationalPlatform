@@ -56,11 +56,18 @@ public class AccountController : Controller
             return NoContent();
         }
         else if(ok == 1){
-            return View("/views/home/main/main.cshtml");
+            // return View("/views/home/main/main.cshtml");
+            return RedirectToAction("Index", "Main");
+
         }
         else{
             return NoContent();
         }
+    }
+
+    public IActionResult Main()
+    {
+        return View("/views/home/main/main.cshtml");
     }
 
     public IActionResult ChangePasswordPage()
@@ -151,6 +158,22 @@ public class AccountController : Controller
         // do here some operation  
         return res;
     }
+
+    public ActionResult DownloadDocument()
+    {
+        Console.WriteLine("Download documnet");
+        string filePath = "c:/log_info.csv";
+        string fileName = "log_info.csv";
+
+        byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+
+        return File(fileBytes, "application/force-download", fileName);
+    }
+
+    public IActionResult Logout()
+    {
+        return RedirectToAction("Login", "Main");
+    }
 }
 
 public class AccountHub: Hub
@@ -179,6 +202,6 @@ public class AccountHub: Hub
         result = RegistPlanModel.CheckPlanId(id);
         await Clients.All.SendAsync("PlanId", result);
     }
-}
+}   
 
 

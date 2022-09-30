@@ -6,9 +6,9 @@
 }
 <head>
   @* <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.js"></script> *@
-  <link rel="stylesheet" href="~/css/main/plan/regist_plan.css">
+  <link rel="stylesheet" href="~/css/main/plan/regist_plan.css?after">
   <script src="~/js/signalr/dist/browser/signalr.js"></script>
-  <script src="~/js/main/plan/regist_plan.js"></script>  
+  <script src="~/js/main/plan/regist_plan.js?after"></script>  
   @* <script src="~/js/main/sensor/regist_sensor.js"></script>   *@
 </head>
 
@@ -21,33 +21,33 @@
             <input class="button" type="file" name="file" accept=".jpg, .png" onchange="checkFileUpload(this.value)"><br>
             <!---파일선택 컨트롤--->
             <ul>
-                <li class="plan_info">도면 이름</li>
-                <li><input type="text" class="plan_info_input" name="plan_image_name" style="text-align:right;" id="plan_id"></li>
+                <li class="plan_info">도면 이름*</li>
+                <li><input type="text" class="plan_info_input" name="plan_image_name" style="text-align:right;" id="plan_id" maxlength='50'></li>
             </ul>
 
             <ul>
                 <li class="plan_info">주소</li>
-                <li><input type="text" class="plan_info_input" name="address" style="text-align:right;"></li>
+                <li><input type="text" class="plan_info_input" name="address" style="text-align:right;" maxlength='50'></li>
             </ul>
 
             <ul>
                 <li class="plan_info">건물 이름</li>
-                <li><input type="text" class="plan_info_input" name="building_name" style="text-align:right;"></li>
+                <li><input type="text" class="plan_info_input" name="building_name" style="text-align:right;" maxlength='50'></li>
             </ul>
 
             <ul>
                 <li class="plan_info">동</li>
-                <li><input type="text" class="plan_info_input" name="dong" style="text-align:right;"></li>
+                <li><input type="text" class="plan_info_input" name="dong" style="text-align:right;" maxlength='50'></li>
             </ul>
 
             <ul>
                 <li class="plan_info">층</li>
-                <li><input type="text" class="plan_info_input" name="floor" style="text-align:right;"></li>
+                <li><input type="text" class="plan_info_input" name="floor" style="text-align:right;" maxlength='50'></li>
             </ul>
 
             <ul>
                 <li class="plan_info">호</li>
-                <li><input type="text" class="plan_info_input" name="ho" style="text-align:right;"></li>
+                <li><input type="text" class="plan_info_input" name="ho" style="text-align:right;" maxlength='50'></li>
             </ul>
             <input class="button" type="submit" value="Upload" onclick="checkPlanId()">
         </form>

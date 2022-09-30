@@ -12,10 +12,10 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/accountHub").build
 //      }
 //  }
 
-history.pushState(null, null, location.href); 
-window.onpopstate = function(event) { 
-	history.go(1); 
-};
+// history.pushState(null, null, location.href); 
+// window.onpopstate = function(event) { 
+// 	history.go(1); 
+// };
 
 
 setInterval(() => {
@@ -26,6 +26,14 @@ function checkSensorId()
 {
     console.log("센서 id 추가 " + document.getElementById("sensor_id1").value);
     sensor_id = document.getElementById("sensor_id1").value;
+
+    sensorId = document.getElementById("sensor_id1").value;
+    planName = document.getElementById("plan_name").value;
+
+    if(sensorId === "" || planName === ""){
+        alert("센서 ID, 도면 이름 항목은 필수 입력입니다.")
+        return;
+    }
     connection.invoke("CheckSensorId", sensor_id).catch(function (err){
         return console.error(err.toString());
     });

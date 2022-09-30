@@ -4,8 +4,8 @@
 }
 <head>
   @* <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.js"></script> *@
-  <link rel="stylesheet" href="~/css/main/plan/regist_plan.css">
-  <script src="~/js/main/plan/regist_plan.js"></script>  
+  <link rel="stylesheet" href="~/css/main/plan/regist_plan.css?after">
+  <script src="~/js/main/plan/regist_plan.js?after"></script>  
 </head>
 
 
@@ -13,8 +13,10 @@
     <div class="title">
         로그 정보
     </div>
-
-
+      @* <button type="button" onclick="location.href='@Url.Action("DownloadDocument", "Account")'" /> *@
+            <form asp-controller="Account" asp-action="DownloadDocument" method="post" enctype="multipart/form-data">
+                <input class="button" type="submit" value="로그 정보 다운로드">
+            </form>
     <table>
     <thread>
       <tr>

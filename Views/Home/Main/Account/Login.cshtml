@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <div class="title">
-        재난 안전 관리 플랫폼 V1.0
+        재난 안전 관리 플랫폼 v1.0
     </div>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -33,8 +33,8 @@
         <h1 class = "sub_title">로그인</h1>
         <hr>
             <form asp-controller="Account" asp-action="CheckLogin" method="post" enctype="multipart/form-data">
-                <p class = "id">ID: <input type="text" name="id"/></p>
-                <p class = "pw">PW: <input id="pw" type="password" name="password"/></p>
+                <p class = "id">ID: <input id='id' type="text" name="id" maxlength='50' /></p>
+                <p class = "pw">PW: <input id="pw" type="password" name="password" maxlength='50'/></p>
                 <input class="button" type="submit" value="로그인" onclick="login()">
             </form>
             @* <form method="post">

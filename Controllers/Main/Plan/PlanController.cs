@@ -48,7 +48,6 @@ public class PlanController : Controller
                 imagePath = RegistPlanModel.ReadImage(plan_image_name);
                 ViewData["PlanImage"] = imagePath;
             }
-            
         }        
 
         return View("/views/home/main/plane/RegistPlane.cshtml");

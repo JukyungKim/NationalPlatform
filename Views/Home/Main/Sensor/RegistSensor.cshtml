@@ -12,7 +12,7 @@
   <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.js"></script>
   <link rel="stylesheet" href="~/css/main/sensor/regist_sensor.css?after">
   <script src="~/js/signalr/dist/browser/signalr.js"></script>
-  <script src="~/js/main/sensor/regist_sensor.js"></script>  
+  <script src="~/js/main/sensor/regist_sensor.js?after"></script>  
   
 </head>
 
@@ -165,14 +165,14 @@
       <div class="popup">
         <form asp-controller="Sensor" asp-action="RegistSensor" method="post" id="regist_sensor_form">
           <p id="sensor_info_br"></p><br>
-          <p style="display:inline" class="sensor_info">센서ID</p>  <input type="text" class="sensor_info_input" id="sensor_id1" name="sensor_id"><br>
-          <p style="display:inline" class="sensor_info">주소</p>  <input type="text" class="sensor_info_input" name="address"><br>
-          <p style="display:inline" class="sensor_info">건물 이름</p>  <input type="text" class="sensor_info_input" name="building_name"><br>
-          <p style="display:inline" class="sensor_info">동</p>  <input type="text" class="sensor_info_input" name="dong"><br>
-          <p style="display:inline" class="sensor_info">층</p>  <input type="text" class="sensor_info_input" name="floor"><br>
-          <p style="display:inline" class="sensor_info">호</p>  <input type="text" class="sensor_info_input" name="ho"><br>
-          <p style="display:inline" class="sensor_info">번호</p>  <input type="text" class="sensor_info_input" name="number"><br>
-          <p style="display:inline" class="sensor_info">도면 이름</p>  <input type="text" class="sensor_info_input" name="plan"><br>
+          <p style="display:inline" class="sensor_info">센서ID*</p>  <input type="text" class="sensor_info_input" id="sensor_id1" name="sensor_id" maxlength='50'><br>
+          <p style="display:inline" class="sensor_info">주소</p>  <input type="text" class="sensor_info_input" name="address" maxlength='50'><br>
+          <p style="display:inline" class="sensor_info">건물 이름</p>  <input type="text" class="sensor_info_input" name="building_name" maxlength='50'><br>
+          <p style="display:inline" class="sensor_info">동</p>  <input type="text" class="sensor_info_input" name="dong" maxlength='50'><br>
+          <p style="display:inline" class="sensor_info">층</p>  <input type="text" class="sensor_info_input" name="floor" maxlength='50'><br>
+          <p style="display:inline" class="sensor_info">호</p>  <input type="text" class="sensor_info_input" name="ho" maxlength='50'><br>
+          <p style="display:inline" class="sensor_info">번호</p>  <input type="text" class="sensor_info_input" name="number" maxlength='50'><br>
+          <p style="display:inline" class="sensor_info">도면 이름*</p>  <input type="text" class="sensor_info_input" id="plan_name" name="plan" maxlength='50'><br>
           @* <p style="display:inline" class="sensor_info">좌표 X</p>  <input type="text" class="sensor_info_input" name="x"><br>
           <p style="display:inline" class="sensor_info">좌표 Y</p>  <input type="text" class="sensor_info_input" name="y"><br> *@
         </form>

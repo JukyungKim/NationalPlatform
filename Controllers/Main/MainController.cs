@@ -34,5 +34,10 @@ public class MainController : Controller
     {
         return View("/views/home/main/account/RegistAccount.cshtml");
     }
+    public IActionResult Login()
+    {
+        return View("/views/home/main/account/Login.cshtml");
+    }
+    
 }
 

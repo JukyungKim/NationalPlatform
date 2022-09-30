@@ -2,8 +2,8 @@
     ViewData["Title"] = "Main Page";
 }
 
-<link rel="stylesheet" href="~/css/main/main.css">
-<script src="~/js/main/main.js"></script>  
+<link rel="stylesheet" href="~/css/main/main.css?after">
+<script src="~/js/main/main.js?after"></script>  
 
 <!DOCTYPE html>
 
@@ -12,8 +12,11 @@
 </header>
 <body>
     <div class="title">
-        재난 안전 관리 플랫폼 V1.0
+        재난 안전 관리 플랫폼 v1.0
     </div>
+    <form method="post">
+        <button class="button_logout" id="logout" asp-controller="Account" asp-action="Logout">로그아웃</button>
+    </form>
                 <form method="post">
                     <button class="button_log" id="change_password" asp-controller="Account" asp-action="ChangePasswordPage">비밀번호 변경</button>
                 </form>
