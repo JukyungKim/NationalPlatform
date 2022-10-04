@@ -85,8 +85,8 @@ public class AccountModel
 
     public static void UpdatePassword(string id, string password)
     {
-        // password = AccountModel.Hash(password);
-        password = SecurePasswordHasher.Hash(password);
+        // password = SecurePasswordHasher.Hash(password);
+        password = Sha256encrypt(password);
         Console.WriteLine("Update password : {0}, {1}", id, password);
 
         using (var conn = new NpgsqlConnection(
@@ -143,12 +143,16 @@ public class AccountModel
                         {    
                             if(reader.IsDBNull(0)){
                                 Console.WriteLine("Not exist password");
-                                return 2;
+                                return 1;
                             }
 
                             string pass = reader.GetString(0);
                             Console.WriteLine("Input password : {0},  save password : {1}", password, pass);
-                            var result = SecurePasswordHasher.Verify(password, pass);
+                            // var result = SecurePasswordHasher.Verify(password, pass);
+                            bool result = false;
+                            if(pass == Sha256encrypt(password)){
+                                result = true;
+                            }
 
                             if(result){
                                 ok = 1;
@@ -222,6 +226,13 @@ public class AccountModel
             score++;
 
         return (PasswordScore)score;
+    }
+    public static string Sha256encrypt(string phrase)
+    {
+        UTF8Encoding encoder = new UTF8Encoding();
+        SHA256Managed sha256hasher = new SHA256Managed();
+        byte[] hashedDataBytes = sha256hasher.ComputeHash(encoder.GetBytes(phrase));
+        return Convert.ToBase64String(hashedDataBytes);
     }
 
 }
@@ -327,3 +338,40 @@ public static class SecurePasswordHasher
         return true;
     }
 }
+
+
+
+// public enum DesType{
+//     Encrypt = 0,
+//     Decrypt = 1
+// }
+// public class DES{
+//     private byte[] Key {get; set;}
+
+//     public string result(DesType type, string input){
+//         var des = new DESCryptoServiceProvider(){
+//             Key = Key,
+//             IV = Key
+//         };
+
+//         var ms = new MemoryStream();
+
+//         var property = new{
+//             transform = type.Equals(DesType.Encrypt) ? des.CreateEncryptor() : des.CreateDecryptor(),
+//             data = type.Equals(DesType.Encrypt) ? Encoding.UTF8.GetBytes(input.ToCharArray()) : Convert.FromBase64String(input)
+//         };
+
+//         var cryStream = new CryptoStream(ms, property.transform, CryptoStreamMode.Write);
+//         var data = property.data;
+
+//         cryStream.Write(data, 0, data.Length);
+//         cryStream.FlushFinalBlock();
+
+//         return type.Equals(DesType.Encrypt) ? Convert.ToBase64String(ms.ToArray()) : Encoding.UTF8.GetString(ms.GetBuffer());
+
+//     }
+
+//     public DES(string key){
+//         Key = ASCIIEncoding.ASCII.GetBytes(key);
+//     }
+// }
