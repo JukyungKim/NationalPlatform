@@ -34,10 +34,12 @@ public class SensorController : Controller
         string x = "0";
         string y = "0";
         bool result;
+        bool checkSensorNum;
         Console.WriteLine("Regist sensor: {0} {1} {2} {3} {4} {5} {6} {7}",sensor_id,
         address, building_name, dong, floor, ho, number, plan);
-        result = RegistSensorModel.CheckSensorId(sensor_id);
-        if(result == false){
+        result = RegistSensorModel.CheckSensorId(sensor_id, plan);
+        checkSensorNum = RegistSensorModel.CheckSensorNum(sensor_id, plan);
+        if(result == false && checkSensorNum == false){
             RegistSensorModel.InsertSensorInfo(sensor_id, address, building_name, dong, floor, ho, number, plan, x, y);
         }
         // RegistSensorModel.ReadSensorInfo();
@@ -65,10 +67,10 @@ public class SensorController : Controller
 
 public class SensorHub: Hub
 {
-    public async Task CheckSensorId(string id)
+    public async Task CheckSensorId(string id, string plan)
     {
         bool result;
-        result = RegistSensorModel.CheckSensorId(id);
+        result = RegistSensorModel.CheckSensorId(id, plan);
         Console.WriteLine("센서 id 체크 " + id + " " + result);
         await Clients.All.SendAsync("SensorId", result);
     }

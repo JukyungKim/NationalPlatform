@@ -172,6 +172,7 @@ public class AccountController : Controller
 
     public IActionResult Logout()
     {
+        AccountModel.SaveLogInfo("master", 10);
         return RedirectToAction("Login", "Main");
     }
 }
@@ -187,12 +188,15 @@ public class AccountHub: Hub
 
         await Clients.All.SendAsync("LoginError", result);
     }
-    public async Task CheckSensorId(string id)
+    public async Task CheckSensorId(string id, string plan)
     {
-        Console.WriteLine("센서 id 체크 " + id);
+        Console.WriteLine("센서 id 체크 " + id + ", " + plan);
         bool result;
-        result = RegistSensorModel.CheckSensorId(id);
+        bool checkNum;
+        result = RegistSensorModel.CheckSensorId(id, plan);
+        checkNum = RegistSensorModel.CheckSensorNum(id, plan);
         await Clients.All.SendAsync("SensorId", result);
+        await Clients.All.SendAsync("SensorNum", checkNum);
     }
 
     public async Task CheckPlanId(string id)

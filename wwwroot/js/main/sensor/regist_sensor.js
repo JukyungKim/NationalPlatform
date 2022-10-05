@@ -34,7 +34,7 @@ function checkSensorId()
         alert("센서 ID, 도면 이름 항목은 필수 입력입니다.")
         return;
     }
-    connection.invoke("CheckSensorId", sensor_id).catch(function (err){
+    connection.invoke("CheckSensorId", sensor_id, planName).catch(function (err){
         return console.error(err.toString());
     });
 }
@@ -55,6 +55,18 @@ connection.on("SensorId", function(result){
         window.location.reload();
     }, 1000);
 });
+
+connection.on("SensorNum", function(result){
+    // pw = document.getElementById("pw1").value;
+    if(result === true){
+        alert("한 도면에 센서는 12개까지 등록됩니다.");
+    }
+    // window.location.reload();
+    setInterval(() => {
+        window.location.reload();
+    }, 1000);
+});
+
 
 function logout()
 {

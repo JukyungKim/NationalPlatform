@@ -23,6 +23,7 @@
         <th>ID</th>
         <th>접속 시간</th>
         <th>접속 여부</th>
+        <th>IP</th>
       </tr>
     </thread>
     <tbody>
@@ -36,7 +37,7 @@
                     {
                         Console.WriteLine("Start read log_info");
                         cmd.Connection = conn;
-                        cmd.CommandText = String.Format("SELECT id, time, pass FROM log_info ORDER BY time DESC");
+                        cmd.CommandText = String.Format("SELECT id, time, pass, ip FROM log_info ORDER BY time DESC");
                         using (StreamWriter csv = new StreamWriter(@"C:\log_info.csv"))
                         {
                             using (var reader = cmd.ExecuteReader())
@@ -46,10 +47,8 @@
                                 {
 
                                     string content = "";
-                                    content = reader.GetString(0) + "," + reader.GetString(1) + "," + reader.GetString(2);
+                                    content = reader.GetString(0) + "," + reader.GetString(1) + "," + reader.GetString(2) + "," + reader.GetString(3);
                                     csv.WriteLine(content);
-
-
 
                                     string pName = reader.GetString(0);
                                     Console.WriteLine("reader test : " + pName);
@@ -69,7 +68,7 @@
                                         } *@
 
                                     <tr>
-                                        @for (int i = 0; i < 3; i++)
+                                        @for (int i = 0; i < 4; i++)
                                         {
                                             if (reader.IsDBNull(i))
                                             {

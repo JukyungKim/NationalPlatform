@@ -36,7 +36,7 @@ public class RegistSensorModel
             }
         }
     }
-    static public bool CheckSensorId(string id)
+    static public bool CheckSensorId(string id, string plan)
     {
         using (var conn = new NpgsqlConnection(
                     "host=localhost;username=postgres;password=1234;database=nationaldb"))
@@ -63,6 +63,58 @@ public class RegistSensorModel
                             Console.WriteLine("Not exist sensor id");
                             return false;
                         }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        return false;
+    }
+
+    static public bool CheckSensorNum(string id, string plan)
+    {
+        using (var conn = new NpgsqlConnection(
+                    "host=localhost;username=postgres;password=1234;database=nationaldb"))
+        {
+            try
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = String.Format("select * from sensor_info where plan_id='{0}';", plan);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        Console.WriteLine(cmd.CommandText);
+                        int sensorCount = 0;
+                        while (reader.Read())
+                        {
+                            sensorCount++;
+                            Console.WriteLine("Check sensor num : " + reader.GetString(0) + ", count:" + sensorCount);
+                            
+                        }
+                        if (sensorCount > 12)
+                        {
+                            Console.WriteLine("Sensor num 12 over");
+                            return true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Sensor num 12 under");
+                            return false;
+                        }
+                        // if(reader.Read()){
+                        //     Console.WriteLine("Sensor num 12 over");
+                        //     return true;
+                        // }
+                        // else{
+                        //     Console.WriteLine("Sensor num 12 under");
+                        //     return false;
+                        // }
                     }
                 }
             }
