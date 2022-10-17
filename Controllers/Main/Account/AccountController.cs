@@ -11,7 +11,7 @@ namespace NationalPlatform.Controllers;
 public class AccountController : Controller
 {
     private readonly ILogger<HomeController> _logger;
- 
+    public static bool isLogin = false;
 
     public AccountController(ILogger<HomeController> logger)
     {
@@ -40,6 +40,9 @@ public class AccountController : Controller
 
     public IActionResult LogInfo()
     {
+        if(!AccountController.isLogin){
+            return NoContent();
+        }
         Console.WriteLine("Log info");
         return View("/views/home/main/account/loginfo.cshtml");
     }
@@ -57,6 +60,7 @@ public class AccountController : Controller
         }
         else if(ok == 1){
             // return View("/views/home/main/main.cshtml");
+            isLogin = true;
             return RedirectToAction("Index", "Main");
 
         }
@@ -72,6 +76,9 @@ public class AccountController : Controller
 
     public IActionResult ChangePasswordPage()
     {
+        if(!AccountController.isLogin){
+            return NoContent();
+        }
         return View("/views/home/main/account/password.cshtml");
     }
 
@@ -162,7 +169,7 @@ public class AccountController : Controller
     public ActionResult DownloadDocument()
     {
         Console.WriteLine("Download documnet");
-        string filePath = "c:/log_info.csv";
+        string filePath = "c:/safe/log_info.csv";
         string fileName = "log_info.csv";
 
         byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
@@ -173,6 +180,7 @@ public class AccountController : Controller
     public IActionResult Logout()
     {
         AccountModel.SaveLogInfo("master", 10);
+        isLogin = false;
         return RedirectToAction("Login", "Main");
     }
 }

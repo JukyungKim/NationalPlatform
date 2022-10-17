@@ -1,6 +1,6 @@
 .title{
     text-align: center;
-    font-size: 120px;
+    font-size: 80px;
     color:beige
 }
 
@@ -32,7 +32,7 @@ body {
   
   .button {
     float: left;
-    margin-left: 100px;
+    margin-left: 160px;
     background: none;
     border: 6px solid #fff;
     border-radius: 10px;
@@ -58,6 +58,10 @@ body {
   
   .button:hover {
     color: #2ecc71;
+  }
+
+  .button_sub{
+    margin: 5px;
   }
   
   /* BUTTON 1 */

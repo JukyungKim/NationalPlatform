@@ -12,23 +12,44 @@ public class MainController : Controller
     {
         _logger = logger;
     }
-    // [Route("home/main")]
+    // [Route("/main")]
     public IActionResult Index()
     {
+        if(!AccountController.isLogin){
+            return NoContent();
+        }
         Console.WriteLine("Main page");
         return View("/views/home/main/main.cshtml");
+        // return View("/views/home/main/account/login.cshtml");
+    }
+
+    public IActionResult RegistSensorRe()
+    {
+        if(!AccountController.isLogin){
+            return NoContent();
+        }
+        Console.WriteLine("RegistSensor");
+        return View("/views/home/main/sensor/RegistSensor.cshtml");
+    }
+    
+    public IActionResult RegistPlaneRe()
+    {
+        if(!AccountController.isLogin){
+            return NoContent();
+        }
+        return View("/views/home/main/plane/RegistPlane.cshtml");
     }
 
     // [Route("home/main/registsensor")]
     public IActionResult RegistSensor()
     {
         Console.WriteLine("RegistSensor");
-        return View("/views/home/main/sensor/RegistSensor.cshtml");
+        return RedirectToAction("RegistSensorRe", "Main");
     }
     
     public IActionResult RegistPlane()
     {
-        return View("/views/home/main/plane/RegistPlane.cshtml");
+        return RedirectToAction("RegistPlaneRe", "Main");
     }
     public IActionResult RegistAccount()
     {
@@ -36,6 +57,7 @@ public class MainController : Controller
     }
     public IActionResult Login()
     {
+        AccountController.isLogin = false;
         return View("/views/home/main/account/Login.cshtml");
     }
     

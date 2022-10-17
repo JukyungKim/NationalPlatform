@@ -19,9 +19,11 @@ function login()
     loginId = document.getElementById("id").value;
     console.log('loginId:' + loginId);
     pw = document.getElementById("pw").value;
+    
     connection.invoke("LoginResult", pw).catch(function (err){
         return console.error(err.toString());
     });
+    
 }
 
 history.pushState(null, null, location.href); 
@@ -46,7 +48,8 @@ connection.start().then(function(){
 
 connection.on("LoginError", function(result){
     // pw = document.getElementById("pw1").value;
-
+    loginId = document.getElementById("id").value;
+    if(loginId !== 'master') alert("계정 정보가 정확하지 않습니다.");   
     if(result === 0){
         alert("계정 정보가 정확하지 않습니다.");   
     }

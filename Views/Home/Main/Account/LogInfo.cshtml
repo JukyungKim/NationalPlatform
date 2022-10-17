@@ -38,7 +38,12 @@
                         Console.WriteLine("Start read log_info");
                         cmd.Connection = conn;
                         cmd.CommandText = String.Format("SELECT id, time, pass, ip FROM log_info ORDER BY time DESC");
-                        using (StreamWriter csv = new StreamWriter(@"C:\log_info.csv"))
+
+                        string folder = "c:/safe";
+                        DirectoryInfo di = new DirectoryInfo(folder);
+                        if(di.Exists == false) di.Create();
+
+                        using (StreamWriter csv = new StreamWriter(@"C:\safe\log_info.csv"))
                         {
                             using (var reader = cmd.ExecuteReader())
                             {

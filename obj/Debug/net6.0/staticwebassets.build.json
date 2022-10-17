@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OhtvvEz012Q5M16FPOWGI+CZ5ecUjWsZ1jf0be5hUzI=",
+  "Hash": "wGrO7RVQxNzH1Br9p7d/WgmmnE+17Sq1sTsXuCsldbg=",
   "Source": "NationalPlatform",
   "BasePath": "_content/NationalPlatform",
   "Mode": "Default",
@@ -1290,6 +1290,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\Kim\\Project\\.NET\\NationalPlatform\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\NationalPlatform.bundle.scp.css"
+    },
+    {
+      "Identity": "D:\\Kim\\Project\\.NET\\NationalPlatform\\wwwroot\\css\\main\\account\\login.css",
+      "SourceId": "NationalPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Kim\\Project\\.NET\\NationalPlatform\\wwwroot\\",
+      "BasePath": "_content/NationalPlatform",
+      "RelativePath": "css/main/account/login.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\main\\account\\login.css"
+    },
+    {
+      "Identity": "D:\\Kim\\Project\\.NET\\NationalPlatform\\wwwroot\\css\\main\\account\\password.css",
+      "SourceId": "NationalPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Kim\\Project\\.NET\\NationalPlatform\\wwwroot\\",
+      "BasePath": "_content/NationalPlatform",
+      "RelativePath": "css/main/account/password.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\main\\account\\password.css"
     },
     {
       "Identity": "D:\\Kim\\Project\\.NET\\NationalPlatform\\wwwroot\\css\\main\\main.css",

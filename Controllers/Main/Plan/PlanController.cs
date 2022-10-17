@@ -33,6 +33,11 @@ public class PlanController : Controller
     public IActionResult UploadImage(IFormFile file, string plan_image_name, 
         string address, string building_name, string dong, string floor, string ho)
     {
+        
+        string extension = Path.GetExtension(file.FileName);
+        Console.WriteLine("File name : " + file.FileName);
+        Console.WriteLine("File extension : " + extension);
+        if(extension != ".jpg" && extension != ".png")    return NoContent();
         if(file == null || plan_image_name == string.Empty){
             return NoContent();
         }

@@ -125,7 +125,6 @@ public class AccountModel
         // password = SecurePasswordHasher.Hash(password);
         Console.WriteLine("Check account : {0}, {1}", id, password);
 
-
         using (var conn = new NpgsqlConnection(
                     "host=localhost;username=postgres;password=1234;database=nationaldb"))
         {

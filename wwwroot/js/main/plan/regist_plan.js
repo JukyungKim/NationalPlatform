@@ -1,6 +1,10 @@
 var connection = new signalR.HubConnectionBuilder().withUrl("/accountHub").build();
 var selectedImagefile = false;
 
+const uploadButton = documnet.getElementById('upload_button');
+
+
+
 setInterval(() => {
     logout();
 }, 1000 * 60 * 10);
@@ -44,6 +48,7 @@ function checkFileUpload(file){
     var fileLength = file.length;
     var fileDot = file.lastIndexOf(".");
     var fileType = file.substring(fileDot+1, fileLength).toLowerCase();
+    
 
     if(fileType != "jpg" && fileType != "png"){
         alert("jpg, png 파일을 선택하세요.")
